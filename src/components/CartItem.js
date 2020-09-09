@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, I18nManager, TouchableOpacity } from 'react-native';
 import CustomFastImage from './CustomFastImage';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class CartItem extends React.Component {
 	constructor(props) {
@@ -21,7 +21,7 @@ export default class CartItem extends React.Component {
 					justifyContent:"center",
 					alignItems:"center",
 				}}>
-					<CustomFastImage width={90} height={90} src={"https://www.carlogos.org/logo/Chevrolet-logo-2013-2560x1440.png"}></CustomFastImage>
+					<CustomFastImage width={90} height={90} src={this.props.image?this.props.image:"https://www.carlogos.org/logo/Chevrolet-logo-2013-2560x1440.png"}></CustomFastImage>
 				</View>
 
 				<View style={{
@@ -40,7 +40,7 @@ export default class CartItem extends React.Component {
 							fontSize:20,
 							color:"#034d7e",
 						}} numberOfLines={1}
-						ellipsizeMode={"tail"}>23 ابريلو 2020</Text>
+						ellipsizeMode={"tail"}>{this.props.name}</Text>
 					</View>
 
 					<View style={{
@@ -93,6 +93,11 @@ export default class CartItem extends React.Component {
 								height:"100%",
 								justifyContent:"center",
 								alignItems:"center",
+							}} onPress={() => {
+								let item = {};
+								item.id = this.props.id;
+								console.log(item);
+								this.props.increment(item);
 							}}>
 								<Text style={{
 									fontFamily:"Robotobold",
@@ -111,7 +116,7 @@ export default class CartItem extends React.Component {
 								fontFamily:"Robotobold",
 								fontSize:20,
 								color:"#000000",
-							}}>2</Text>
+							}}>{this.props.count}</Text>
 						</View>
 
 						<View style={{
@@ -124,12 +129,22 @@ export default class CartItem extends React.Component {
 								height:"100%",
 								justifyContent:"center",
 								alignItems:"center",
+							}} onPress={() => {
+								if(this.props.count == 1){
+									let item = {};
+									item.id = this.props.id;
+									this.props.remove(item);
+								}else{
+									let item = {};
+									item.id = this.props.id;
+									this.props.decrement(item);
+								}
 							}}>
 								<Text style={{
 									fontFamily:"Robotobold",
 									fontSize:20,
 									color:"#f35257"
-								}}>-</Text>
+								}}>{this.props.count == 1?(<Icon name="trash" size={20} />):"-"}</Text>
 							</TouchableOpacity>
 						</View>
 					</View>

@@ -21,6 +21,18 @@ class Cart extends React.Component {
 		};
 	}
 
+	IncrementItem = (payload) => {
+		this.props.IncrementPartCount(payload,this.props.cart)
+	}
+
+	DecrementItem = (payload) => {
+		this.props.DecrementPartCount(payload,this.props.cart)
+	}
+
+	DeleteItem = (payload) => {
+		this.props.RemovePartCount(payload,this.props.cart)
+	}
+
 	render(){
 		return(
 			<View style={{
@@ -36,11 +48,11 @@ class Cart extends React.Component {
 					flex:4,
 				}}>
 					<FlatList
-						data={this.state.parts}
+						data={this.props.cart}
 						contentContainerStyle={{
 							padding:15,
-							height:this.state.parts.length == 0 ?"100%":"auto",
-							width:this.state.parts.length == 0 ?"100%":"auto",
+							height:this.props.cart.length == 0 ?"100%":"auto",
+							width:this.props.cart.length == 0 ?"100%":"auto",
 						}}
 						ListEmptyComponent={() => {
 							return(
@@ -49,10 +61,18 @@ class Cart extends React.Component {
 						}}
 						renderItem={ ({item,index}) => {
 			    			return(
-								<CartItem key={item} />
+								<CartItem 
+									key={item.id}
+									id={item.id}
+									image={item.image}
+									name={item.name}
+									count={item.count}
+									increment={this.IncrementItem}
+									decrement={this.DecrementItem}
+									remove={this.DeleteItem} />
 			    			)
 			    		}}
-			    		keyExtractor={(item,index) => item}
+			    		keyExtractor={(item,index) => item.id}
 					/>
 
 				</View>
@@ -65,7 +85,7 @@ class Cart extends React.Component {
 					<TouchableOpacity style={{
 						width:"90%",
 						height:60,
-						backgroundColor:this.state.parts.length > 0 ?"#034d7e":"#8a8a8a",
+						backgroundColor:this.props.cart.length > 0 ?"#034d7e":"#8a8a8a",
 						justifyContent:"center",
 						alignItems:"center",
 						borderRadius:9,

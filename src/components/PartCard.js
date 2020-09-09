@@ -2,8 +2,10 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CustomFastImage from './CustomFastImage';
+import { connect } from 'react-redux';
+import actions from './../actions';
 
-export default class PartCard extends React.Component {
+class PartCard extends React.Component {
 	render(){
 		return(
 			<View style={{
@@ -76,7 +78,7 @@ export default class PartCard extends React.Component {
 							justifyContent:"center",
 							alignItems:"flex-end",
 						}}>
-							<View style={{
+							<TouchableOpacity style={{
 								backgroundColor:"#cd9500",
 								width:170,
 								height:40,
@@ -85,6 +87,15 @@ export default class PartCard extends React.Component {
 								alignItems:"flex-start",
 								padding:10,
 								flexDirection:"row"
+							}} onPress={() => {
+								let item = {};
+								item.id = this.props.id;
+								item.price = this.props.price;
+								item.name = this.props.name;
+								item.image = this.props.image;
+								item.count = 1;
+
+								this.props.AddToCart(item,this.props.cart);
 							}}>
 								<Text style={{
 									flex:10,
@@ -92,7 +103,7 @@ export default class PartCard extends React.Component {
 									fontSize:15
 								}}>اضف الي عربة الشراء</Text>
 								<Icon name="cart" size={20} color={"#FFFFFF"} style={{flex:2}}/>
-							</View>
+							</TouchableOpacity>
 						</View>
 					</View>
 				</View>
@@ -100,3 +111,15 @@ export default class PartCard extends React.Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		cart: state.cart.list,
+	}
+}
+
+const mapDispatchToProps = () => {
+	return actions
+}
+
+export default connect(mapStateToProps,mapDispatchToProps())(PartCard);

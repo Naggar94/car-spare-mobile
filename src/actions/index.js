@@ -39,35 +39,39 @@ const filterActions = {
 }
 
 const cartActions = {
-	AddToCart: (part) => {
+	AddToCart: (part,oldList) => {
 		return({
 			type:"AddToCart",
 			payload:{
-				part:part
+				part:part,
+				oldList:oldList
 			},
 		})
 	},
-	IncrementPartCount: (part) => {
+	IncrementPartCount: (part,oldList) => {
 		return({
 			type:"IncrementPartCount",
 			payload:{
-				part:part
+				part:part,
+				oldList:oldList
 			},
 		})
 	},
-	DecrementPartCount: (part) => {
+	DecrementPartCount: (part,oldList) => {
 		return({
 			type:"DecrementPartCount",
 			payload:{
-				part:part
+				part:part,
+				oldList:oldList
 			},
 		})
 	},
-	RemovePartCount: (part) => {
+	RemovePartCount: (part,oldList) => {
 		return({
 			type:"RemovePartCount",
 			payload:{
-				part:part
+				part:part,
+				oldList:oldList
 			},
 		})
 	},

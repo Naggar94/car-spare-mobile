@@ -42,6 +42,7 @@ export default class BaseTypePartsList extends React.Component {
 		    			return(
 		    				<PartCard 
 		    					key={item.partId} 
+		    					id={item.partId}
 		    					name={item.partName} 
 		    					description={item.partDescription} 
 		    					image={item.partImgURL} 
