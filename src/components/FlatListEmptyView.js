@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class FlatListEmptyView extends React.Component {
@@ -18,7 +18,7 @@ export default class FlatListEmptyView extends React.Component {
 				<Icon name="warning" size={70} color={"#034d7e"} />
 				<Text style={{
 					fontSize:20,
-					fontFamily:"Robotobold",
+					fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 				}}>عفوا لا يوجد بيانات حاليا</Text>
 			</View>
 		);

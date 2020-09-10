@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import FontisoIcon from 'react-native-vector-icons/Fontisto';
 import ModelCard from '../../components/ModelCard';
 import { withNavigation } from 'react-navigation';
@@ -21,8 +21,9 @@ class Model extends React.Component {
 				flexDirection:"column",
 			}}>
 				<Text style={{
+					alignSelf:"flex-start",
 					flex:1,
-					fontFamily:"Robotobold",
+					fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 					fontSize:23,
 					color:"#034d7e",
 				}}>اختر حسب ماركة سيارتك</Text>

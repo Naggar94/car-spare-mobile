@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, I18nManager, TouchableOpacity } from 'react-native';
+import { Text, View, I18nManager, TouchableOpacity, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import actions from './../actions';
 import CartProgress from './../components/CartProgress';
@@ -92,7 +92,7 @@ class Cart extends React.Component {
 					}}><Text style={{
 						color:"#FFFFFF",
 						fontSize:18,
-						fontFamily:"Robotobold",
+						fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 					}}>بيانات التوصيل</Text></TouchableOpacity>
 				</View>
 

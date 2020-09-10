@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, I18nManager } from 'react-native';
+import { Text, View, I18nManager, Platform } from 'react-native';
 
 
 export default class CartProgress extends React.Component {
@@ -32,13 +32,13 @@ export default class CartProgress extends React.Component {
 					}}>
 						<Text style={{
 							color:"#FFFFFF",
-							fontFamily:"Robotobold",
+							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 							fontSize:15
 						}}>1</Text>
 					</View>
 					<Text style={{
 						color:"#cd9500",
-						fontFamily:"Robotobold",
+						fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 						fontSize:18
 					}}>السلة</Text>
 				</View>
@@ -60,13 +60,13 @@ export default class CartProgress extends React.Component {
 					}}>
 						<Text style={{
 							color:"#034d7e",
-							fontFamily:"Robotobold",
+							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 							fontSize:15
 						}}>2</Text>
 					</View>
 					<Text style={{
 						color:"#cd9500",
-						fontFamily:"Robotobold",
+						fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 						fontSize:18
 					}}>التوصيل</Text>
 				</View>
@@ -87,13 +87,13 @@ export default class CartProgress extends React.Component {
 					}}>
 						<Text style={{
 							color:"#034d7e",
-							fontFamily:"Robotobold",
+							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 							fontSize:15
 						}}>3</Text>
 					</View>
 					<Text style={{
 						color:"#cd9500",
-						fontFamily:"Robotobold",
+						fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 						fontSize:18
 					}}>الدفع</Text>
 				</View>

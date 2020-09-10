@@ -27,8 +27,12 @@ const FilterReducer = (state = initialState, action) => {
 				...state,
 				type:action.payload.type,
 			};
-		default:
+		case 'ResetFilter':
 			return initialState;
+		default:
+			return {
+				...state
+			};
 	}
 }
 

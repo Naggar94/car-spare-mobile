@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity,TextInput,I18nManager,BackHandler} from 'react-native';
+import { Text, View, TouchableOpacity,TextInput,I18nManager,BackHandler, Platform } from 'react-native';
 import FontisoIcon from 'react-native-vector-icons/Fontisto';
 
 export default class Login extends React.Component {
@@ -53,7 +53,7 @@ export default class Login extends React.Component {
 			    		<Text style={{
 			    			color:"#034d7e",
 			    			fontSize:35,
-			    			fontFamily:"Robotobold",
+			    			fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 			    		}}>
 			    			اهلا بكم في قطع غياري
 		    			</Text>
@@ -68,7 +68,7 @@ export default class Login extends React.Component {
 			    			paddingTop:15,
 			    			color:"#98999b",
 			    			fontSize:20,
-			    			fontFamily:"Robotoregular",
+			    			fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
 			    			textAlign:"center",
 			    			width:"80%"
 			    		}}>
@@ -114,7 +114,7 @@ export default class Login extends React.Component {
 		    				}}>
 			    				<Text style={{
 			    					fontSize:20,
-				    				fontFamily:"Robotoregular",
+				    				fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
 				    				color:"#FFFFFF",
 			    				}}>الاستمرار بواسطة حساب فيسبوك </Text>
 		    				</View>
@@ -148,7 +148,7 @@ export default class Login extends React.Component {
 		    				}}>
 			    				<Text style={{
 			    					fontSize:20,
-				    				fontFamily:"Robotoregular",
+				    				fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
 				    				color:"#707070",
 			    				}}>الاستمرار بواسطة حساب جوجل</Text>
 			    			</View>
@@ -181,7 +181,7 @@ export default class Login extends React.Component {
 		    				}}>
 			    				<Text style={{
 			    					fontSize:20,
-				    				fontFamily:"Robotoregular",
+				    				fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
 				    				color:"#707070",
 			    				}}>الاستمرار بواسطة حساب ابل </Text>
 			    			</View>
@@ -199,7 +199,7 @@ export default class Login extends React.Component {
 			    	}}>
 			    		<Text style={{
 			    			fontSize:20,
-			    			fontFamily:"Robotoregular",
+			    			fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
 			    			color:"#98999b",
 			    		}}>رقم الهاتف *</Text>
 
@@ -237,7 +237,7 @@ export default class Login extends React.Component {
 				    				justifyContent:"center",
 				    			}}>
 					    			<Text style={{
-				    					fontFamily:"Robotobold",
+				    					fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 				    					fontSize:18,
 				    					color:"#FFFFFF",
 				    				}}>+20</Text>
@@ -263,7 +263,7 @@ export default class Login extends React.Component {
 
 			    				<Text style={{
 			    					fontSize:20,
-				    				fontFamily:"Robotobold",
+				    				fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 				    				color:"#FFFFFF",
 			    				}}>التحقق من الرقم</Text>
 

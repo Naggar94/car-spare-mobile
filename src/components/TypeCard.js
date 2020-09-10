@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ActivityIndicator, TouchableOpacity, Text } from 'react-native';
+import { View, ActivityIndicator, TouchableOpacity, Text, Platform } from 'react-native';
 import FastImage from "react-native-fast-image";
 import CustomFastImage from './CustomFastImage';
 import { withNavigation } from 'react-navigation';
@@ -32,7 +32,7 @@ class TypeCard extends React.Component {
 			}}>
 				<Text style={{
 					fontSize:20,
-					fontFamily:"Robotobold"
+					fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold"
 				}}>{this.props.name?this.props.name:'لا يوجد'}</Text>
 				<CustomFastImage width={70} height={70} src={this.props.image?this.props.image:"https://www.carlogos.org/logo/Chevrolet-logo-2013-2560x1440.png"}></CustomFastImage>
 			</TouchableOpacity>

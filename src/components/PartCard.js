@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CustomFastImage from './CustomFastImage';
 import { connect } from 'react-redux';
@@ -40,7 +40,7 @@ class PartCard extends React.Component {
 						flex:1,
 						color:"#FFFFFF",
 						fontSize:20,
-						fontFamily:"Robotobold",
+						fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 					}}>{this.props.name}</Text>
 
 					<View style={{
@@ -50,7 +50,7 @@ class PartCard extends React.Component {
 						<Text style={{
 							color:"#FFFFFF",
 							fontSize:14,
-							fontFamily:"Robotobold",
+							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 						}}>
     						{this.props.description}
 						</Text>
@@ -68,7 +68,7 @@ class PartCard extends React.Component {
 							<Text style={{
     							color:"#FFFFFF",
     							fontSize:18,
-    							fontFamily:"Robotobold",
+    							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 							}}>
 								السعر: {this.props.price} ج.م
 							</Text>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, I18nManager } from 'react-native';
+import { View, Text, TextInput, I18nManager, Platform } from 'react-native';
 import CustomFastImage from '../../components/CustomFastImage';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -21,14 +21,14 @@ export default class Header extends React.Component {
 				marginBottom:20,
 			}}>
 				<Text style={{
-					fontFamily:"Robotobold",
+					fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 					fontSize:23,
 					color:"#FFF",
 					marginBottom:10
 				}}>تطبيق قطع غياري</Text>
 
 				<Text style={{
-					fontFamily:"Robotobold",
+					fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 					fontSize:23,
 					color:"#cd9500",
 					marginBottom:20

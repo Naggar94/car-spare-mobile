@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, I18nManager } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, I18nManager, Platform } from 'react-native';
 import CustomFastImage from '../../components/CustomFastImage';
 import { FlatList } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -34,7 +34,7 @@ class TypeSlider extends React.Component {
 		    					borderColor:"#000000",
 		    					borderWidth:1,
 		    					borderRadius:10,
-		    					height:"60%",
+		    					height:"80%",
 		    					marginHorizontal:5,
 		    					backgroundColor:this.state.renderedIndex == index?"#034d7e":"#FFFFFF",
 		    				}} onPress={async () => {
@@ -44,7 +44,7 @@ class TypeSlider extends React.Component {
 			    					this.props.refresh();
 			    				}
 		    				}}>
-		    					<Text style={{fontSize:16,fontFamily:"Robotobold",color:this.state.renderedIndex == index?"#FFFFFF":"#000000",}}>{item.type}</Text>
+		    					<Text style={{fontSize:16,fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",color:this.state.renderedIndex == index?"#FFFFFF":"#000000",}}>{item.type}</Text>
 		    				</TouchableOpacity>
 		    			);
 		    		}}

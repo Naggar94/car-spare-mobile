@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity,I18nManager, ActivityIndicator, RefreshControl} from 'react-native';
+import { Text, View, TouchableOpacity,I18nManager, ActivityIndicator, RefreshControl, Platform} from 'react-native';
 import { FlatList } from 'react-navigation';
 import { connect } from 'react-redux';
 import actions from './../actions';
@@ -87,7 +87,7 @@ class ManufactureDateList extends React.Component {
 										this.props.navigation.navigate('PartsList');
 									}
 								}}>
-									<Text style={{fontSize:20,fontFamily:"Robotobold",alignSelf:"flex-start"}}>{item}</Text>
+									<Text style={{fontSize:20,fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",alignSelf:"flex-start"}}>{item}</Text>
 								</TouchableOpacity>
 							);
 						}}

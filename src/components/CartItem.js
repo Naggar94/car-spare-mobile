@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, I18nManager, TouchableOpacity } from 'react-native';
+import { Text, View, I18nManager, TouchableOpacity, Platform } from 'react-native';
 import CustomFastImage from './CustomFastImage';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -36,7 +36,7 @@ export default class CartItem extends React.Component {
 						alignItems:"flex-start",
 					}}>
 						<Text style={{
-							fontFamily:"Robotobold",
+							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 							fontSize:20,
 							color:"#034d7e",
 						}} numberOfLines={1}
@@ -49,7 +49,7 @@ export default class CartItem extends React.Component {
 						alignItems:"flex-start",
 					}}>
 						<Text style={{
-							fontFamily:"Robotobold",
+							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 							fontSize:15,
 							color:"#98999b",
 						}} numberOfLines={1}
@@ -62,7 +62,7 @@ export default class CartItem extends React.Component {
 						alignItems:"flex-start",
 					}}>
 						<Text style={{
-							fontFamily:"Robotobold",
+							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 							fontSize:15,
 							color:"#98999b",
 						}} numberOfLines={1}
@@ -100,7 +100,7 @@ export default class CartItem extends React.Component {
 								this.props.increment(item);
 							}}>
 								<Text style={{
-									fontFamily:"Robotobold",
+									fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 									fontSize:20,
 									color:"#f35257"
 								}}>+</Text>
@@ -113,7 +113,7 @@ export default class CartItem extends React.Component {
 							alignItems:"center",
 						}}>
 							<Text style={{
-								fontFamily:"Robotobold",
+								fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 								fontSize:20,
 								color:"#000000",
 							}}>{this.props.count}</Text>
@@ -141,7 +141,7 @@ export default class CartItem extends React.Component {
 								}
 							}}>
 								<Text style={{
-									fontFamily:"Robotobold",
+									fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 									fontSize:20,
 									color:"#f35257"
 								}}>{this.props.count == 1?(<Icon name="trash" size={20} />):"-"}</Text>

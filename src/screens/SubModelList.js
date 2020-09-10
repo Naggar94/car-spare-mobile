@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, TouchableOpacity,ActivityIndicator, RefreshControl} from 'react-native';
+import { Text, View, TouchableOpacity,ActivityIndicator, RefreshControl, Platform } from 'react-native';
 import { FlatList } from 'react-navigation';
 import { connect } from 'react-redux';
 import actions from './../actions'
@@ -81,7 +81,7 @@ class SubModelList extends React.Component {
 									this.props.SetSubModel(item.modelId);
 									this.props.navigation.navigate('ManufactureDateList');
 								}}>
-									<Text style={{fontSize:20,fontFamily:"Robotobold",}}>{item.model}</Text>
+									<Text style={{fontSize:20,fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",alignSelf:"flex-start"}}>{item.model}</Text>
 								</TouchableOpacity>
 							);
 						}}

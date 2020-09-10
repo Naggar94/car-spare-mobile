@@ -72,8 +72,13 @@ const CartReducer = (state = initialState, action) => {
 					list:newList,
 				};
 			}
-		default:
+		case 'ResetCart':{
 			return initialState;
+		}
+		default:
+			return {
+				...state,
+			};
 	}
 }
 
