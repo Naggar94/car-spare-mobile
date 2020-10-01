@@ -1,0 +1,48 @@
+{
+  "home": {
+    "headerTitle": "Car spare application",
+    "headerDescription": "Order and recieve from your home",
+    "searchBarPlaceHolder": "Search by model or part number",
+    "modelsHeader":"Choose model",
+    "allModels":"All cars",
+    "typesHeader":"Choose part type",
+    "allTypes":"All parts",
+  },
+  "model": {
+  	"title":"Choose model",
+  },
+  "type": {
+  	"title":"Choose part type",
+  },
+  "parts":{
+  	"title":"Add parts to cart",
+  	"price":"Price",
+  	"addToCart":"Add To Cart",
+  	"bottomSheetTitle":"Do you want to add this item to cart ?",
+  	"bottomSheetAccept":"Yes",
+  	"bottomSheetReject":"No",
+  },
+  "manufactureDate":{
+  	"title":"Choose manufacture date",
+  },
+  "cart":{
+  	"title":"Payment",
+  	"progressItem1":"Cart",
+  	"progressItem2":"Shipping",
+  	"progressItem3":"Payment",
+  	"butToShippingInfo":"Shipping Information",
+    "bottomSheetTitle":"Do you want to change item count ?",
+    "bottomSheetChange":"Change",
+  },
+  "FlatListEmpty":{
+  	"alert":"Sorry, Currently there is no items",
+  },
+  "Login":{
+  	"title":"Sign In",
+  	"introTitle":"Welcome to car spare",
+  	"introDesc":"Where you can buy all car parts and accessories",
+  	"facebookLogin":"Continue using Facebook",
+  	"googleLogin":"Continue using Google",
+  	"appleLogin":"Continue using Apple",
+  }
+}

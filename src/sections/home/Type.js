@@ -5,6 +5,7 @@ import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import actions from './../../actions'
 import FontisoIcon from 'react-native-vector-icons/Fontisto';
+import i18n from '../../i18n';
 
 class Type extends React.Component {
 	constructor(props) {
@@ -26,7 +27,7 @@ class Type extends React.Component {
 					fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 					fontSize:23,
 					color:"#034d7e",
-				}}>اختر حسب نوع قطع الغيار</Text>
+				}}>{i18n.t('home.typesHeader')}</Text>
 				<View
 					style={{
 						flexDirection:"column",
@@ -106,9 +107,9 @@ class Type extends React.Component {
 						<Text style={{
 							fontSize:15
 						}}>
-							جميع قطع الغيار
+							{i18n.t('home.allTypes')}
 						</Text>
-						<FontisoIcon name="angle-left" size={15} style={{paddingRight:10}}/>
+						<FontisoIcon name={i18n.locale == 'ar'?"angle-left":"angle-right"} size={15} style={{paddingRight:i18n.locale == 'ar'?10:0,paddingLeft:i18n.locale == 'ar'?0:10}}/>
 					</TouchableOpacity>
 				</View>
 			</View>

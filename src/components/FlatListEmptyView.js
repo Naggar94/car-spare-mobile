@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import i18n from '../i18n';
 
 export default class FlatListEmptyView extends React.Component {
 	constructor(props) {
@@ -19,7 +20,7 @@ export default class FlatListEmptyView extends React.Component {
 				<Text style={{
 					fontSize:20,
 					fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
-				}}>عفوا لا يوجد بيانات حاليا</Text>
+				}}>{i18n.t('FlatListEmpty.alert')}</Text>
 			</View>
 		);
 	}

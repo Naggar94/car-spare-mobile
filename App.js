@@ -9,7 +9,7 @@
 import React from 'react';
 import Navigator from "./src/navigation/Navigator";
 import {StatusBar,Platform} from 'react-native';
-import Orientation, { orientation } from "react-native-orientation";
+// import Orientation, { orientation } from "react-native-orientation";
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import allReducers from './src/reducers';
@@ -22,7 +22,7 @@ export default class App extends React.Component{
     if(Platform.OS === 'android'){
       await StatusBar.setBackgroundColor("#034d7e");
     }
-    Orientation.lockToPortrait();
+    // Orientation.lockToPortrait();
   };
 
   render() {

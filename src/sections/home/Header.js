@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TextInput, I18nManager, Platform } from 'react-native';
 import CustomFastImage from '../../components/CustomFastImage';
 import Icon from 'react-native-vector-icons/Ionicons';
+import i18n from '../../i18n';
 
 export default class Header extends React.Component {
 	constructor(props) {
@@ -25,14 +26,14 @@ export default class Header extends React.Component {
 					fontSize:23,
 					color:"#FFF",
 					marginBottom:10
-				}}>تطبيق قطع غياري</Text>
+				}}>{i18n.t('home.headerTitle')}</Text>
 
 				<Text style={{
 					fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 					fontSize:23,
 					color:"#cd9500",
 					marginBottom:20
-				}}>اطلب و احنا نجيلك لحد عندك</Text>
+				}}>{i18n.t('home.headerDescription')}</Text>
 
 				<View style={{
 					flexDirection:'row',
@@ -48,7 +49,7 @@ export default class Header extends React.Component {
 	    				paddingHorizontal:10,
 	    				textAlign :  I18nManager.isRTL ? 'right' : 'left',
 	    			}}
-	    			placeholder="ابحث برقم السيارة او رقم القطعة"
+	    			placeholder={i18n.t('home.searchBarPlaceHolder')}
 	    			placeholderTextColor="#98999b"
 	    			numberOfLines={1}
 	    			></TextInput>

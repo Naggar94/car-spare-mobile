@@ -1,9 +1,10 @@
 const filterActions = {
-	SetModel: (model) => {
+	SetModel: (model,modelName) => {
 		return({
 			type:"SetModel",
 			payload:{
-				model:model
+				model:model,
+				modelName:modelName
 			},
 		})
 	},
@@ -48,6 +49,15 @@ const cartActions = {
 			},
 		})
 	},
+	ChangePartCount: (part,oldList) => {
+		return({
+			type:"ChangePartCount",
+			payload:{
+				part:part,
+				oldList:oldList
+			},
+		})
+	},
 	IncrementPartCount: (part,oldList) => {
 		return({
 			type:"IncrementPartCount",
@@ -78,6 +88,14 @@ const cartActions = {
 	ResetCart: () => {
 		return({
 			type:"ResetCart",
+		})
+	},
+	FillCart: (cart) => {
+		return({
+			type:"FillCart",
+			payload:{
+				cart:cart,
+			},
 		})
 	}
 }

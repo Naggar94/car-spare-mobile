@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "992786975345",
+    "firebase_url": "https://carspare-44a08.firebaseio.com",
+    "project_id": "carspare-44a08",
+    "storage_bucket": "carspare-44a08.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992786975345:android:28f19e693940f49bdd29d0",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "992786975345-ea109gj9jrvndqhhibnr20q3mr3hd8fp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUaxToSYmTFT6zxRuLK5US9FGtqKH2bYw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "992786975345-ea109gj9jrvndqhhibnr20q3mr3hd8fp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

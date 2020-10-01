@@ -4,8 +4,16 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import CustomFastImage from './CustomFastImage';
 import { connect } from 'react-redux';
 import actions from './../actions';
+import i18n from '../i18n';
 
 class PartCard extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			isFavorited:false,
+		};
+	}
+
 	render(){
 		return(
 			<View style={{
@@ -21,9 +29,21 @@ class PartCard extends React.Component {
 				<View style={{
 					borderBottomWidth:0,
 					flex:4,
-					justifyContent:"center",
 					width:"100%"
 				}}>
+					<TouchableOpacity style={{
+						position:"absolute",
+						width:60,
+						height:60,
+						zIndex:1000,
+						alignSelf:"flex-end",
+						alignItems:"center",
+						justifyContent:"center"
+					}} onPress={() => {
+						this.setState({isFavorited:!this.state.isFavorited});
+					}}>
+						<Icon name={this.state.isFavorited?"heart":"heart-outline"} size={35} color={"#821c00"} />
+					</TouchableOpacity>
 					<CustomFastImage width={"100%"} height={"100%"} src={this.props.image?this.props.image:"https://www.carlogos.org/logo/Chevrolet-logo-2013-2560x1440.png"}></CustomFastImage>
 				</View>
 				<View style={{
@@ -70,7 +90,7 @@ class PartCard extends React.Component {
     							fontSize:18,
     							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 							}}>
-								السعر: {this.props.price} ج.م
+								{i18n.t('parts.price')}: {this.props.price} ج.م
 							</Text>
 						</View>
 						<View style={{
@@ -93,15 +113,17 @@ class PartCard extends React.Component {
 								item.price = this.props.price;
 								item.name = this.props.name;
 								item.image = this.props.image;
+								item.modelName = this.props.modelName;
 								item.count = 1;
 
-								this.props.AddToCart(item,this.props.cart);
+								this.props.showBottomSheet(item);
+								//this.props.AddToCart(item,this.props.cart);
 							}}>
 								<Text style={{
 									flex:10,
 									color:"#FFFFFF",
 									fontSize:15
-								}}>اضف الي عربة الشراء</Text>
+								}}>{i18n.t('parts.addToCart')}</Text>
 								<Icon name="cart" size={20} color={"#FFFFFF"} style={{flex:2}}/>
 							</TouchableOpacity>
 						</View>
@@ -115,6 +137,7 @@ class PartCard extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		cart: state.cart.list,
+		modelName:state.filter.modelName,
 	}
 }
 

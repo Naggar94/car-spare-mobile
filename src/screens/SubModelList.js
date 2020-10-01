@@ -5,11 +5,14 @@ import { connect } from 'react-redux';
 import actions from './../actions'
 import ModelProvider from '../providers/Model';
 import FlatListEmptyView from '../components/FlatListEmptyView';
+import i18n from '../i18n';
 
 class SubModelList extends React.Component {
-	static navigationOptions = {
-	    title: 'اختر حسب ماركة سيارتك',
-	};
+	static navigationOptions = ({ navigation }) => {
+		return{
+			title:i18n.t('model.title'),
+		}
+	}
 	constructor(props) {
 		super(props)
 		this.initialState = {

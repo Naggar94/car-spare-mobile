@@ -1,22 +1,99 @@
 import React from 'react';
-import { Text, View, TouchableOpacity,TextInput,I18nManager,BackHandler, Platform } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
+import { Text, View, TouchableOpacity,TextInput,I18nManager,BackHandler, Platform} from 'react-native';
 import FontisoIcon from 'react-native-vector-icons/Fontisto';
+import RNRestart from 'react-native-restart';
+import i18n from '../i18n';
+import { connect } from 'react-redux';
+import actions from './../actions';
+import auth from '@react-native-firebase/auth';
+// import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
-export default class Login extends React.Component {
-	static navigationOptions = {
-	    title: 'تسجيل الدخول',
-	};
+class Login extends React.Component {
+
+	static navigationOptions = ({ navigation }) => {
+		let locale = null;
+		try {
+			AsyncStorage.getItem('locale').then((currentLocale) => {
+				if(currentLocale != null){
+					locale = currentLocale;
+				}else{
+					locale = 'ar';
+				}
+			})
+		}catch (error) {
+			// Error saving data
+		}
+		const { params = {} } = navigation.state;
+		return{
+			title:i18n.t('Login.title'),
+			headerRight:() => (
+				locale?
+				<TouchableOpacity style={{
+					width:40,
+					height:"100%",
+					justifyContent:"center",
+					alignItems:"center",
+				}} onPress={async () => {
+					await AsyncStorage.setItem('cart',JSON.stringify(navigation.getParam('cart')));
+					try {
+						let newLocale = 'ar';
+						if (locale !== null) {
+							if(locale == 'ar'){
+								newLocale = 'en';
+								I18nManager.allowRTL(false);
+		  						I18nManager.forceRTL(false);
+							}else{
+								I18nManager.allowRTL(true);
+		  						I18nManager.forceRTL(true);
+							}
+						}else{
+							newLocale = 'en';
+							I18nManager.allowRTL(false);
+	  						I18nManager.forceRTL(false);
+						}
+						await AsyncStorage.setItem('locale',newLocale);
+						RNRestart.Restart();
+					} catch (error) {
+						// Error saving data
+					}
+				}}>
+					<Text style={{
+						color:"#FFFFFF",
+						fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
+						fontSize:15,
+					}}>{locale == 'en'?'ع':'EN'}</Text>
+				</TouchableOpacity>
+				:
+				null
+			)
+		}
+    }
+
+
 	constructor(props) {
-		super(props)
-		I18nManager.forceRTL(true);
+		super(props);
 		this.state = {
 			screen:1,
+			cart:{}
 		}
     }
 
     componentDidMount() {
+    	this.updateCart();
     	BackHandler.addEventListener('hardwareBackPress', (this._handleBackButton));
     }
+
+    componentDidUpdate() {
+		this.updateCart();
+	}
+
+	updateCart() {
+		if(this.props.cart != this.state.cart){
+			this.setState({cart:this.props.cart});
+			this.props.navigation.setParams({ cart: this.props.cart });
+		}
+	}
 
     _handleBackButton = () => {
     	if(this.state.screen == 1){
@@ -55,7 +132,7 @@ export default class Login extends React.Component {
 			    			fontSize:35,
 			    			fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 			    		}}>
-			    			اهلا بكم في قطع غياري
+			    			{i18n.t('Login.introTitle')}
 		    			</Text>
 		    		</View>
 
@@ -72,7 +149,7 @@ export default class Login extends React.Component {
 			    			textAlign:"center",
 			    			width:"80%"
 			    		}}>
-			    			حيث يمكنك شراء جميع احتياجتك من قطع غيار و اكسسوارات السيارات
+			    			{i18n.t('Login.introDesc')}
 			    		</Text>
 		    		</View>
 		    		<View style={{
@@ -116,7 +193,7 @@ export default class Login extends React.Component {
 			    					fontSize:20,
 				    				fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
 				    				color:"#FFFFFF",
-			    				}}>الاستمرار بواسطة حساب فيسبوك </Text>
+			    				}}>{i18n.t('Login.facebookLogin')}</Text>
 		    				</View>
 
 		    			</TouchableOpacity>
@@ -150,7 +227,7 @@ export default class Login extends React.Component {
 			    					fontSize:20,
 				    				fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
 				    				color:"#707070",
-			    				}}>الاستمرار بواسطة حساب جوجل</Text>
+			    				}}>{i18n.t('Login.googleLogin')}</Text>
 			    			</View>
 
 		    			</TouchableOpacity>
@@ -183,7 +260,7 @@ export default class Login extends React.Component {
 			    					fontSize:20,
 				    				fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
 				    				color:"#707070",
-			    				}}>الاستمرار بواسطة حساب ابل </Text>
+			    				}}>{i18n.t('Login.appleLogin')}</Text>
 			    			</View>
 
 		    			</TouchableOpacity>
@@ -275,3 +352,15 @@ export default class Login extends React.Component {
 	    );
     }
 }
+
+const mapStateToProps = (state) => {
+	return {
+		cart: state.cart.list,
+	}
+}
+
+const mapDispatchToProps = () => {
+	return actions
+}
+
+export default connect(mapStateToProps,mapDispatchToProps())(Login);

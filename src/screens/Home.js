@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, TouchableOpacity,I18nManager, ActivityIndicator, View} from 'react-native';
+import { ScrollView, TouchableOpacity, ActivityIndicator, View} from 'react-native';
 import { SliderBox } from "react-native-image-slider-box";
 import FastImage from "react-native-fast-image";
 import ModelSection from '../sections/home/Model';
@@ -18,7 +18,6 @@ export default class Home extends React.Component {
 
 	constructor(props) {
 		super(props);
-		I18nManager.forceRTL(true);
 		this.state = {
 			images: [
 				"https://source.unsplash.com/1024x768/?nature",

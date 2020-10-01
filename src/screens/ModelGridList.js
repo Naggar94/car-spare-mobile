@@ -6,11 +6,14 @@ import { connect } from 'react-redux';
 import actions from './../actions';
 import BrandProvider from '../providers/Brand';
 import FlatListEmptyView from '../components/FlatListEmptyView';
+import i18n from '../i18n';
 
 class ModelGridList extends React.Component {
-	static navigationOptions = {
-	    title: 'اختر حسب ماركة سيارتك',
-	};
+	static navigationOptions = ({ navigation }) => {
+		return{
+			title:i18n.t('model.title'),
+		}
+	}
 	constructor(props) {
 		super(props);
 		this.initialState = {
@@ -24,8 +27,8 @@ class ModelGridList extends React.Component {
 		this.state = this.initialState;
     }
 
-    onCardClick = (brandId) => {
-    	this.props.SetModel(brandId);
+    onCardClick = (brandId,brandName) => {
+    	this.props.SetModel(brandId,brandName);
     	this.props.navigation.navigate('SubModelList');
     }
 
@@ -98,7 +101,7 @@ class ModelGridList extends React.Component {
 										height:100,
 										padding:3,
 									}}>
-										<ModelCard id={item.brandId} pressable={true} preesableAction={this.onCardClick} image={item.brangLogoURL} />
+										<ModelCard id={item.brandId} name={item.brandName} pressable={true} preesableAction={this.onCardClick} image={item.brangLogoURL} />
 									</View>
 								);
 							}}

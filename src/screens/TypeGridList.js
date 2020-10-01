@@ -6,11 +6,14 @@ import { connect } from 'react-redux';
 import actions from './../actions';
 import TypeProvider from '../providers/Type';
 import FlatListEmptyView from '../components/FlatListEmptyView';
+import i18n from '../i18n';
 
 class ModelGridList extends React.Component {
-	static navigationOptions = {
-	    title: 'اختر حسب نوع قطع الغيار',
-	};
+	static navigationOptions = ({ navigation }) => {
+		return{
+			title:i18n.t('type.title'),
+		}
+	}
 	constructor(props) {
 		super(props)
 		this.initialState = {

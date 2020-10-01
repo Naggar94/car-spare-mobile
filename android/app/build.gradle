@@ -121,6 +121,7 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
+    buildToolsVersion "29.0.3"
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {
@@ -129,6 +130,7 @@ android {
     }
 
     defaultConfig {
+        multiDexEnabled true
         applicationId "com.awesomeproject"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
@@ -144,6 +146,13 @@ android {
         }
     }
     signingConfigs {
+        release {
+            storeFile file('carspare.keystore')
+            storePassword '123456'
+            keyAlias 'carspare'
+            keyPassword '123456'
+        }
+
         debug {
             storeFile file('debug.keystore')
             storePassword 'android'
@@ -181,6 +190,7 @@ android {
 }
 
 dependencies {
+    compile 'com.android.support:appcompat-v7:26.0.0'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
@@ -222,3 +232,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services' // <- Add this line

@@ -1,5 +1,6 @@
 const initialState = {
 	model:"",
+	modelName:"",
 	submodel:"",
 	date:"",
 	type:"",
@@ -11,6 +12,7 @@ const FilterReducer = (state = initialState, action) => {
 			return {
 				...state,
 				model:action.payload.model,
+				modelName:action.payload.modelName,
 			};
 		case 'SetSubModel':
 			return {

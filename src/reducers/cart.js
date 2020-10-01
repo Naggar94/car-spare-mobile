@@ -23,6 +23,21 @@ const CartReducer = (state = initialState, action) => {
 					list:newList,
 				};
 			}
+		case 'ChangePartCount':
+			{
+				console.log(action.payload.part);
+				let newList = [];
+				newList = newList.concat(action.payload.oldList);
+				let index = newList.findIndex( e => e.id === action.payload.part.id );
+				if(index > -1){
+					newList[index].count = action.payload.part.counter;
+				}
+
+				return {
+					...state,
+					list:newList,
+				};
+			}
 		case 'IncrementPartCount':
 			{
 				let newList = [];
@@ -74,6 +89,12 @@ const CartReducer = (state = initialState, action) => {
 			}
 		case 'ResetCart':{
 			return initialState;
+		}
+		case 'FillCart':{
+			return {
+				...state,
+				list:action.payload.cart
+			}
 		}
 		default:
 			return {

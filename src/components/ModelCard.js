@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, ActivityIndicator } from 'react-native';
+import { TouchableOpacity, ActivityIndicator, I18nManager } from 'react-native';
 import FastImage from "react-native-fast-image";
 import CustomFastImage from './CustomFastImage';
 import { withNavigation } from 'react-navigation';
@@ -21,12 +21,12 @@ class ModelCard extends React.Component {
 				height:"100%",
 				justifyContent:"center",
 				alignItems:"center"
-			}} onPress={() => {
+			}} onPress={async () => {
 				if(this.props.pressable){
-					this.props.preesableAction(this.props.id);
+					this.props.preesableAction(this.props.id,this.props.name);
 				}else{
 					this.props.ResetFilter();
-					this.props.SetModel(this.props.id);
+					this.props.SetModel(this.props.id,this.props.name);
 					this.props.navigation.navigate('SubModelList');
 				}
 			}}>

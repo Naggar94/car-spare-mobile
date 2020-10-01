@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, I18nManager, Platform } from 'react-native';
+import i18n from '../i18n';
 
 
 export default class CartProgress extends React.Component {
@@ -40,7 +41,7 @@ export default class CartProgress extends React.Component {
 						color:"#cd9500",
 						fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 						fontSize:18
-					}}>السلة</Text>
+					}}>{i18n.t('cart.progressItem1')}</Text>
 				</View>
 
 				<View style={{
@@ -68,7 +69,7 @@ export default class CartProgress extends React.Component {
 						color:"#cd9500",
 						fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 						fontSize:18
-					}}>التوصيل</Text>
+					}}>{i18n.t('cart.progressItem2')}</Text>
 				</View>
 
 				<View style={{
@@ -95,7 +96,7 @@ export default class CartProgress extends React.Component {
 						color:"#cd9500",
 						fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 						fontSize:18
-					}}>الدفع</Text>
+					}}>{i18n.t('cart.progressItem3')}</Text>
 				</View>
 
 			</View>

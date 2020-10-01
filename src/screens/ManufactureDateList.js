@@ -1,18 +1,21 @@
 import React from 'react';
-import { Text, View, TouchableOpacity,I18nManager, ActivityIndicator, RefreshControl, Platform} from 'react-native';
+import { Text, View, TouchableOpacity, ActivityIndicator, RefreshControl, Platform} from 'react-native';
 import { FlatList } from 'react-navigation';
 import { connect } from 'react-redux';
 import actions from './../actions';
 import ModelYearProvider from '../providers/ModelYear';
 import FlatListEmptyView from '../components/FlatListEmptyView';
+import i18n from '../i18n';
 
 class ManufactureDateList extends React.Component {
-	static navigationOptions = {
-	    title: 'اختر سنة صنع السيارة',
+	static navigationOptions = ({ navigation }) => {
+		return{
+			title:i18n.t('manufactureDate.title'),
+		}
 	};
+
 	constructor(props) {
 		super(props);
-		I18nManager.forceRTL(true);
 		this.initialState = {
 			refreshing:false,
 			dates:[],

@@ -1,5 +1,5 @@
 import React from 'react';
-import { I18nManager, View, RefreshControl } from 'react-native';
+import { View, RefreshControl } from 'react-native';
 import { FlatList } from 'react-navigation';
 import PartCard from './../../components/PartCard';
 import FlatListEmptyView from '../../components/FlatListEmptyView';
@@ -7,10 +7,12 @@ import FlatListEmptyView from '../../components/FlatListEmptyView';
 export default class BaseTypePartsList extends React.Component {
 	constructor(props) {
 		super(props);
-		I18nManager.allowRTL(true);
-		I18nManager.forceRTL(true);
 		this.state = {
 		};
+	}
+
+	doShowBottomSheet = (item) => {
+		this.props.showBottomSheet(item);
 	}
 
 	render(){
@@ -46,7 +48,8 @@ export default class BaseTypePartsList extends React.Component {
 		    					name={item.partName} 
 		    					description={item.partDescription} 
 		    					image={item.partImgURL} 
-		    					price={item.partPrice} />
+		    					price={item.partPrice}
+		    					showBottomSheet={this.doShowBottomSheet} />
 		    			)
 		    		}}
 		    		keyExtractor={(item,index) => item.partId}

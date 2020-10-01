@@ -1,16 +1,15 @@
 import React from 'react';
-import { View, Text, TextInput, TouchableOpacity, I18nManager, Platform } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Platform } from 'react-native';
 import CustomFastImage from '../../components/CustomFastImage';
 import { FlatList } from 'react-navigation';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 import actions from './../../actions';
+import i18n from '../../i18n';
 
 class TypeSlider extends React.Component {
 	constructor(props) {
 		super(props);
-		I18nManager.allowRTL(true);
-		I18nManager.forceRTL(true);
 		this.state = {
 			renderedIndex:0,
 		};

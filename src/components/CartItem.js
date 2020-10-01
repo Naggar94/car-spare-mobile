@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, I18nManager, TouchableOpacity, Platform } from 'react-native';
+import { Text, View, I18nManager, TouchableOpacity, TouchableWithoutFeedback, Platform } from 'react-native';
 import CustomFastImage from './CustomFastImage';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -66,7 +66,7 @@ export default class CartItem extends React.Component {
 							fontSize:15,
 							color:"#98999b",
 						}} numberOfLines={1}
-						ellipsizeMode={"tail"}>#2211-93189</Text>
+						ellipsizeMode={"tail"}>{this.props.modelName}</Text>
 					</View>
 
 				</View>
@@ -112,11 +112,19 @@ export default class CartItem extends React.Component {
 							justifyContent:"center",
 							alignItems:"center",
 						}}>
-							<Text style={{
-								fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
-								fontSize:20,
-								color:"#000000",
-							}}>{this.props.count}</Text>
+							<TouchableWithoutFeedback onPress={() => {
+								let item = {};
+								item.id = this.props.id;
+								item.counter = this.props.count;
+								item.name = this.props.name;
+								this.props.counter(item);
+							}}>
+								<Text style={{
+									fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
+									fontSize:20,
+									color:"#000000",
+								}}>{this.props.count}</Text>
+							</TouchableWithoutFeedback>
 						</View>
 
 						<View style={{

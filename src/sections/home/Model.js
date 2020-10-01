@@ -5,6 +5,7 @@ import ModelCard from '../../components/ModelCard';
 import { withNavigation } from 'react-navigation';
 import { connect } from 'react-redux';
 import actions from './../../actions'
+import i18n from '../../i18n';
 
 class Model extends React.Component {
 	constructor(props) {
@@ -26,7 +27,7 @@ class Model extends React.Component {
 					fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 					fontSize:23,
 					color:"#034d7e",
-				}}>اختر حسب ماركة سيارتك</Text>
+				}}>{i18n.t('home.modelsHeader')}</Text>
 				<View
 					style={{
 						flexDirection:"column",
@@ -51,7 +52,7 @@ class Model extends React.Component {
 											height:"100%",
 										}}
 									>
-										<ModelCard id={value.brandId} image={value.logoURL} />
+										<ModelCard id={value.brandId} name={value.brandName} image={value.logoURL} />
 									</View>
 								);
 							})
@@ -75,7 +76,7 @@ class Model extends React.Component {
 											height:"100%",
 										}}
 									>
-										<ModelCard id={value.brandId} image={value.logoURL} />
+										<ModelCard id={value.brandId} name={value.brandName} image={value.logoURL} />
 									</View>
 								);
 							})
@@ -106,9 +107,9 @@ class Model extends React.Component {
 						<Text style={{
 							fontSize:15
 						}}>
-							جميع السيارات
+							{i18n.t('home.allModels')}
 						</Text>
-						<FontisoIcon name="angle-left" size={15} style={{paddingRight:10}}/>
+						<FontisoIcon name={i18n.locale == 'ar'?"angle-left":"angle-right"} size={15} style={{paddingRight:i18n.locale == 'ar'?10:0,paddingLeft:i18n.locale == 'ar'?0:10}}/>
 					</TouchableOpacity>
 				</View>
 			</View>
