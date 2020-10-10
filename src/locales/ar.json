@@ -1,4 +1,9 @@
 {
+  "bottomBar":{
+    "home":"الرئيسية",
+    "cart":"عربة الشراء",
+    "profile":"الملف الشخصي",
+  },
   "home": {
     "headerTitle": "تطبيق قطع غياري",
     "headerDescription": "اطلب و احنا نجيلك لحد عندك",
@@ -44,5 +49,48 @@
   	"facebookLogin":"الاستمرار بواسطة حساب فيسبوك",
   	"googleLogin":"الاستمرار بواسطة حساب جوجل",
   	"appleLogin":"الاستمرار بواسطة حساب ابل",
+    "email":"البريد الإلكتروني",
+    "password":"كلمة المرور",
+    "confirmPassword":"تأكيد كلمة المرور",
+    "emailSignIn":"تسجيل دخول بالبريد",
+    "createNewAccount":"إنشاء حساب جديد",
+    "submitLogin":"تسجيل الدخول",
+    "submitSignUp":"إنشاء حساب",
+    "emailSignUpTitle":"تسجيل حساب جديد",
+    "emailSignInTitle":"أدخل البريد الإلكتروني و كلمة المرور",
+    "emailSignInErrorMessages":{
+      "emailInvalid":"البريد الإلكتروني غير سليم",
+      "emailMissing":"البريد الإلكتروني لا يمكن ان يكون فارغ",
+      "passwordInvalid":"كلمة المرور يجب ان تتكون من سته حروف او ارقام علي الأقل",
+      "passwordMismatch":"كلمه المرور غير متطابقة",
+      "authErrorUnknown":"حدث خطأ خلال تسجيل الدخول، برجاء اعاده المحاوله",
+      "authUserNotFound":"هذا المستخدم غير مسجل لدينا",
+      "authInvalidEmail":"هذا البريد الإلكتروني غير صحيح",
+      "authEmailAlreadyInUse":"هذا البريد مستخدم من قبل",
+      "authIncorrectPassword":"البريد الإلكتروني او كلمة المرور غير صحيحه",
+    }
+  },
+  "PhoneLogin":{
+    "title":"دخول بالهاتف",
+    "phoneNumber":"رقم الهاتف",
+    "checkNumber":"التحقق من الرقم",
+  },
+  "General":{
+    "loading":"تحميل"
+  },
+  "Profile":{
+    "item":{
+      "changeLanguage":"تغيير اللغة",
+      "basicInformation":"البيانات الرئيسية",
+      "wishList":"قائمة المفضلات",
+      "logout":"تسجيل الخروج",
+    },
+    "title":"الملف الشخصي"
+  },
+  "Authentication":{
+    "loading":"جاري تسجيل الدخول",
+    "authenticationFailedConfirmation":"تم",
+    "authenticationFailedTitle":"خطأ",
+    "authenticationFailedMSG":"لقد حدث خطأ خلال تسجيل الدخول، برجاء المحاوله مجددا",
   }
 }

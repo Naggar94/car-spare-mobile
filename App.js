@@ -7,6 +7,7 @@
  */
 
 import React from 'react';
+import i18n from './src/i18n';
 import Navigator from "./src/navigation/Navigator";
 import {StatusBar,Platform} from 'react-native';
 // import Orientation, { orientation } from "react-native-orientation";

@@ -5,71 +5,100 @@ import FastImage from "react-native-fast-image";
 import ModelSection from '../sections/home/Model';
 import TypeSection from '../sections/home/Type';
 import HeaderSection from '../sections/home/Header';
+import SearchSection from '../sections/home/Search';
 import HomeProvider from '../providers/Home';
+import SearchProvider from '../providers/Search';
 
 export default class Home extends React.Component {
-	static navigationOptions = {
-	    title: '',
-	    headerStyle: {
-			height: 0,
-			backgroundColor: '#034d7e',
+	static navigationOptions = ({navigation}) => {
+		return {
+			tabbarLabel:"asdasdasd",
+			title: '',
+			headerStyle: {
+				height: 0,
+				backgroundColor: '#034d7e',
+			}
 		}
-	};
+	}
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			images: [
-				"https://source.unsplash.com/1024x768/?nature",
-				"https://source.unsplash.com/1024x768/?water",
-				"https://source.unsplash.com/1024x768/?girl",
-				"https://source.unsplash.com/1024x768/?tree", // Network image
-			],
+			images: [],
 			brands: [],
 			categories: [],
+			searchResponse: [],
+			query:"",
 			hasLoadedData:false,
 		};
-    }
+	}
 
-    componentDidMount = async () => {
-    	try{
-    		let response = await HomeProvider.fetch();
-    		console.log(response.data);
-    		this.setState({hasLoadedData:true,brands:response.data.brands,categories:response.data.categories});
-    	}catch(e){
-    		//Show Error View
-    	}
-    }
+	componentDidMount = async () => {
+		try{
+			let response = await HomeProvider.fetch();
+			//console.log(response.data);
+			this.setState({hasLoadedData:true,brands:response.data.brands,categories:response.data.categories,images:response.data.ADS});
+		}catch(e){
+			//Show Error View
+			console.log(e);
+		}
+	}
 
-    render(){
-    	return(
-    		<ScrollView style={{
-    			backgroundColor:'#FFFFFF'
-    		}}>
-				
-    			<HeaderSection/>
-    			{
-    				this.state.hasLoadedData?
-    				<View>
-	    				<SliderBox 
-						images={this.state.images} 
-						sliderBoxHeight={200} 
-						ImageComponent={FastImage}
-						autoplay
-						circleLoop
-						imageLoadingColor="#034d7e" />
+	onSearchBoxChange = async (query) => {
+		try{
+			if(query != ""){
+				let response = await SearchProvider.fetch(query);
+				console.log(response.data);
+				this.setState({hasLoadedData:true, searchResponse:response.data.search,query});
+			}else{
+				this.setState({hasLoadedData:true, searchResponse:[],query});
+			}
+		}catch(e){
+			//Show Error View
+		}
+	}
 
-						<ModelSection brands={this.state.brands}/>
+	showLoading = () => {
+		this.setState({hasLoadedData:false})
+	}
 
-						<TypeSection categories={this.state.categories}/>
+	render(){
+		return(
+			<View style={{
+				backgroundColor:'#FFFFFF',
+				width:"100%",
+				height:"100%",
+			}}>
+				<HeaderSection onSearchBoxChange={this.onSearchBoxChange} showLoading={this.showLoading}/>
+				{
+					this.state.hasLoadedData && this.state.query == ""?
+					<ScrollView>
+						<View>
+							<SliderBox 
+							images={this.state.images.map(({adsImgURL})=>(adsImgURL))} 
+							sliderBoxHeight={200} 
+							ImageComponent={FastImage}
+							autoplay
+							circleLoop
+							imageLoadingColor="#034d7e" />
+
+							<ModelSection brands={this.state.brands}/>
+
+							<TypeSection categories={this.state.categories}/>
+						</View>
+					</ScrollView>
+					:
+					this.state.hasLoadedData && this.state.query != ""?
+					<View>
+						<SearchSection items={this.state.searchResponse} />
 					</View>
 					:
 					<View>
 						<ActivityIndicator size="large" color="#034d7e">
 						</ActivityIndicator>
 					</View>
-    			}
-			</ScrollView>
+				}
+			</View>
 	    );
-    }
-}
+	}
+	}

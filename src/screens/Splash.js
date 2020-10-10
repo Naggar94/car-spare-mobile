@@ -5,14 +5,29 @@ import AsyncStorage from '@react-native-community/async-storage';
 import RNRestart from 'react-native-restart';
 import { connect } from 'react-redux';
 import actions from './../actions';
+import auth from '@react-native-firebase/auth';
 
 class Splash extends React.Component {
+	authObserver = null;
 	constructor(props) {
 		super(props)
     }
 
-    componentDidMount = async () => {
-		try {
+	componentDidMount() {
+		this.authObserver = auth().onAuthStateChanged(this.onAuthStateChanged);
+	}
+
+    componentWillUnmount() {
+		this.authObserver();
+	}
+
+	onAuthStateChanged = async (user) => {
+		let navigationTo = 'Auth';
+		if (user && user.phoneNumber != null) {
+            navigationTo = 'App';
+        }
+
+        try {
 			const cart = await AsyncStorage.getItem('cart');
 			if(cart !== null){
 				this.props.FillCart(JSON.parse(cart));
@@ -30,7 +45,7 @@ class Splash extends React.Component {
 					I18nManager.forceRTL(false);
 				}
 
-				this.props.navigation.navigate('Auth');
+				this.props.navigation.navigate(navigationTo);
 			}else{
 				i18n.locale = 'ar';
 				I18nManager.allowRTL(true);
@@ -40,9 +55,10 @@ class Splash extends React.Component {
 			}
 		} catch (error) {
 			console.log(error);
-			this.props.navigation.navigate('Auth');
+			this.props.navigation.navigate(navigationTo);
 		}
-    }
+
+	}
 
     render(){
     	return(

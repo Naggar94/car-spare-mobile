@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from '../../i18n';
 
 export default class Header extends React.Component {
+	searchTimeout = null;
 	constructor(props) {
 		super(props);
 	}
@@ -52,6 +53,23 @@ export default class Header extends React.Component {
 	    			placeholder={i18n.t('home.searchBarPlaceHolder')}
 	    			placeholderTextColor="#98999b"
 	    			numberOfLines={1}
+	    			onChangeText={(text) => {
+	    				if(text != ""){
+	    					this.props.showLoading();
+							if(this.searchTimeout){
+								clearTimeout(this.searchTimeout);
+							}
+
+							this.searchTimeout = setTimeout(() => {
+								this.props.onSearchBoxChange(text);
+							}, 1000);
+	    				}else{
+	    					if(this.searchTimeout){
+								clearTimeout(this.searchTimeout);
+							}
+							this.props.onSearchBoxChange(text);
+	    				}
+	    			}}
 	    			></TextInput>
 	    			<View style={{
 	    				flex:2,

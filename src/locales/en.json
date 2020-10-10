@@ -1,4 +1,9 @@
 {
+  "bottomBar":{
+    "home":"Home",
+    "cart":"Cart",
+    "profile":"Profile",
+  },
   "home": {
     "headerTitle": "Car spare application",
     "headerDescription": "Order and recieve from your home",
@@ -44,5 +49,48 @@
   	"facebookLogin":"Continue using Facebook",
   	"googleLogin":"Continue using Google",
   	"appleLogin":"Continue using Apple",
+    "email":"Email",
+    "password":"Password",
+    "confirmPassword":"Confirm password",
+    "emailSignIn":"Sign in with email",
+    "createNewAccount":"Create new account",
+    "submitLogin":"Login",
+    "submitSignUp":"Create Account",
+    "emailSignUpTitle":"Create new account",
+    "emailSignInTitle":"Enter your email and password",
+    "emailSignInErrorMessages":{
+      "emailInvalid":"Email is invalid",
+      "emailMissing":"Email cannot be empty",
+      "passwordInvalid":"Password must be at least 6 characters",
+      "passwordMismatch":"Password is not identical",
+      "authErrorUnknown":"Error during authentication, Please Try Again",
+      "authUserNotFound":"This credentials do not match any existing credentials in our database",
+      "authInvalidEmail":"Email is invalid, Please enter valid one",
+      "authEmailAlreadyInUse":"Email already in use",
+      "authIncorrectPassword":"Incorrect username or password",
+    }
+  },
+  "PhoneLogin":{
+    "title":"Phone Login",
+    "phoneNumber":"Phone Number",
+    "checkNumber":"Check Number",
+  },
+  "General":{
+    "loading":"Loading"
+  },
+  "Profile":{
+    "item":{
+      "changeLanguage":"Change Language",
+      "basicInformation":"Basic Information",
+      "wishList":"Wish List",
+      "logout":"Log Out",
+    },
+    "title":"Profile"
+  },
+  "Authentication":{
+    "loading":"Authenticating",
+    "authenticationFailedConfirmation":"OK",
+    "authenticationFailedTitle":"Error",
+    "authenticationFailedMSG":"Error occured during authentication, please try again.",
   }
 }
