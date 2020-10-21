@@ -28,6 +28,7 @@ import TypeGridListScreen from '../screens/TypeGridList';
 import ManufactureDateListScreen from '../screens/ManufactureDateList';
 import PartsListScreen from '../screens/PartsList';
 import CartScreen from '../screens/Cart';
+import FavoritesScreen from '../screens/Favorites';
 import i18n from './../i18n';
 
 const HomeStack = createStackNavigator({  
@@ -86,7 +87,8 @@ CartStack.navigationOptions = ({ navigation }) => ({
 });
 
 const ProfileStack = createStackNavigator({  
-	Profile:ProfileScreen 
+	Profile:ProfileScreen,
+	Favorites:FavoritesScreen
 },
 {
 	defaultNavigationOptions: {

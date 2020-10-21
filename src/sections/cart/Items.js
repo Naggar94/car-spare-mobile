@@ -10,6 +10,8 @@ import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import FlatListEmptyView from './../../components/FlatListEmptyView';
 import CartItem from './../../components/CartItem';
+import AsyncStorage from '@react-native-community/async-storage';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 class Items extends React.Component {
 	constructor(props) {
@@ -51,6 +53,7 @@ class Items extends React.Component {
 	}
 
 	removeTint = () => {
+		this.setState({isTintShowed:false});
 		this.props.showTint(false);
 	}
 
@@ -193,6 +196,19 @@ class Items extends React.Component {
 						justifyContent:"center",
 						alignItems:"center",
 						borderRadius:9,
+					}} onPress={async () => {
+						if(this.props.cart.length > 0){
+							try{
+								var loggedUser = await AsyncStorage.getItem('loggedUser');
+								if(loggedUser != null){
+									this.props.addressPage();
+								}else{
+									this.setState({showErrorAlert:true});
+								}
+							}catch(e){
+
+							}
+						}
 					}}><Text style={{
 						color:"#FFFFFF",
 						fontSize:18,
@@ -207,6 +223,19 @@ class Items extends React.Component {
 					renderContent={this.renderContent}
 					initialSnap={1}
 					onCloseEnd={this.removeTint}
+				/>
+				<AwesomeAlert
+					show={this.state.showErrorAlert}
+					closeOnTouchOutside={true}
+					closeOnHardwareBackPress={true}
+					showProgress={false}
+					showConfirmButton={true}
+					confirmText={i18n.t('cart.okMessage')}
+					title={i18n.t('cart.notAuthenticatedTitle')}
+					message={i18n.t('cart.notAuthenticatedMessage')}
+					onConfirmPressed={async () => {
+						await this.setState({showErrorAlert:false});
+					}}
 				/>
 			</View>
 		);

@@ -4,6 +4,8 @@ import CartProgress from './../components/CartProgress';
 import CustomFastImage from './../components/CustomFastImage';
 import i18n from '../i18n';
 import CartItemsList from './../sections/cart/Items';
+import AddressView from './../sections/cart/Address';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 export default class Cart extends React.Component {
 	static navigationOptions = ({ navigation }) => {
@@ -16,11 +18,26 @@ export default class Cart extends React.Component {
 		super(props);
 		this.state = {
 			showTint:false,
+			screen:2,
+			showLoadingAlert:false,
 		};
 	}
 
 	showTint = (show = true) => {
+		console.log(show);
 		this.setState({showTint:show});
+	}
+
+	addressPage = () => {
+		this.setState({screen:2});
+	}
+
+	itemsPage = () => {
+		this.setState({screen:1});
+	}
+
+	shoeLoadingAlert = (showLoadingAlert = true) => {
+		this.setState({showLoadingAlert})
 	}
 
 	render(){
@@ -58,13 +75,31 @@ export default class Cart extends React.Component {
 					null
 				}
 
-				<CartProgress />
+				<CartProgress screen={this.state.screen} />
 
 				<View style={{
 					flex:5,
 				}}>
-					<CartItemsList showTint={this.showTint} isTintShowed={this.state.showTint}/>
+					{
+						this.state.screen == 1?
+						<CartItemsList showTint={this.showTint} isTintShowed={this.state.showTint} addressPage={this.addressPage}/>
+						:
+						<AddressView 
+							showTint={this.showTint} 
+							isTintShowed={this.state.showTint} 
+							itemsPage={this.itemsPage}
+							showLoadingAlert={this.showLoadingAlert}/>
+						}
 				</View>
+				<AwesomeAlert
+					show={this.state.showLoadingAlert}
+					showProgress={true}
+					progressSize={20}
+					progressColor={"#000000"}
+					closeOnTouchOutside={false}
+					closeOnHardwareBackPress={false}
+					title={i18n.t('General.loading')}
+				/>
 			</View>
 		);
 	}

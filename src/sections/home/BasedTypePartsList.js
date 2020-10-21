@@ -15,6 +15,10 @@ export default class BaseTypePartsList extends React.Component {
 		this.props.showBottomSheet(item);
 	}
 
+	showLoadingAlertDialog = (showLoadingAlert = true) => {
+		this.props.showLoadingAlertDialog(showLoadingAlert);
+	}
+
 	render(){
 		return(
 			<View
@@ -49,7 +53,8 @@ export default class BaseTypePartsList extends React.Component {
 		    					description={item.partDescription} 
 		    					image={item.partImgURL} 
 		    					price={item.partPrice}
-		    					showBottomSheet={this.doShowBottomSheet} />
+		    					showBottomSheet={this.doShowBottomSheet}
+		    					showLoadingAlertDialog={this.showLoadingAlertDialog} />
 		    			)
 		    		}}
 		    		keyExtractor={(item,index) => item.partId}

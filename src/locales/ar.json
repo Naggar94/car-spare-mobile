@@ -38,6 +38,19 @@
   	"butToShippingInfo":"بيانات التوصيل",
     "bottomSheetTitle":"هل ترييد تغيير عدد المنتج ؟",
     "bottomSheetChange":"تغيير",
+    "bottomSheetAdd":"إضافة عنوان جديد",
+    "butToPayment":"الذهاب الي الدفع",
+    "deliveryNotesPlaceholder":"ملاحظات التسليم مثال: \"اتصل بي أولاً\"",
+    "noDeliveryAddressMSG":"اختر عنوان التوصيل",
+    "notAuthenticatedMessage":"برجاء تسجيل الدخول اولا لاتمام العمليه",
+    "okMessage":"تم",
+    "notAuthenticatedTitle":"خطأ",
+    "Address":{
+      "textInputStreetAddress":"أدخ العنوان",
+      "textInputBuildingInfo":"تفاصيل المبني",
+      "textInputMobileNumber":"رقم الهاتف",
+      "textInputAddressName":"اسم العنوان مثل )المنزل(",
+    }
   },
   "FlatListEmpty":{
   	"alert":"عفوا لا يوجد بيانات حاليا",

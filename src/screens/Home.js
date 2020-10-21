@@ -34,6 +34,7 @@ export default class Home extends React.Component {
 	}
 
 	componentDidMount = async () => {
+		
 		try{
 			let response = await HomeProvider.fetch();
 			//console.log(response.data);

@@ -9,6 +9,7 @@ import TypeProvider from '../providers/Type';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import i18n from '../i18n';
+import AwesomeAlert from 'react-native-awesome-alerts';
 
 
 class PartsList extends React.Component {
@@ -22,6 +23,7 @@ class PartsList extends React.Component {
 		super(props);
 		this.sheetRef = React.createRef();
 		this.initialState = {
+			showLoadingAlert:false,
 			refreshing:false,
 			parts:[],
 			hasLoadedParts:false,
@@ -96,6 +98,14 @@ class PartsList extends React.Component {
 	onAcceptAddingItemToCart = () => {
 		this.props.AddToCart(this.state.bottomSheetItem,this.props.cart);
 		this.closeBottomSheet();
+	}
+
+	showLoadingAlertDialog = (showLoadingAlert = true) => {
+		this.setState({showLoadingAlert});
+	}
+
+	onLoadingModalDismiss = () => {
+
 	}
 
 	renderContent = () => {
@@ -231,7 +241,12 @@ class PartsList extends React.Component {
 					}}>
 						{
 							this.state.hasLoadedParts?
-								<BasedTypePartsList parts={this.state.parts} refresh={this._onRefresh} refreshing={this.state.refreshing} showBottomSheet={this.doShowBottomSheet} />
+								<BasedTypePartsList 
+									parts={this.state.parts} 
+									refresh={this._onRefresh} 
+									refreshing={this.state.refreshing} 
+									showBottomSheet={this.doShowBottomSheet} 
+									showLoadingAlertDialog={this.showLoadingAlertDialog} />
 							:
 								<View 
 									style={{
@@ -245,6 +260,16 @@ class PartsList extends React.Component {
 								</View>
 						}
 					</View>
+					<AwesomeAlert
+						show={this.state.showLoadingAlert}
+						onDismiss={this.onLoadingModalDismiss}
+						showProgress={true}
+						progressSize={20}
+						progressColor={"#000000"}
+						closeOnTouchOutside={false}
+						closeOnHardwareBackPress={false}
+						title={i18n.t('General.loading')}
+					/>
 					<BottomSheet
 						ref={this.sheetRef}
 						snapPoints={['25%', 0]}

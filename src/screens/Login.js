@@ -90,13 +90,22 @@ class Login extends React.Component {
     }
 
     componentDidMount() {
-    	this.updateCart();
-    	BackHandler.addEventListener('hardwareBackPress', (this._handleBackButton));
-    	this.authObserver = auth().onAuthStateChanged(this.onAuthStateChanged);
+		this.props.navigation.addListener('willFocus', this.componentDidAppear);
+		this.props.navigation.addListener('willBlur', this.componentDidBlur);
+		this.updateCart();
+		this.authObserver = auth().onAuthStateChanged(this.onAuthStateChanged);
     }
 
     componentDidUpdate() {
 		this.updateCart();
+	}
+
+	componentDidAppear = () => {
+		BackHandler.addEventListener('hardwareBackPress', (this._handleBackButton));
+	}
+
+	componentDidBlur = () => {
+		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton);
 	}
 
 	onAuthStateChanged = async (user) => {
@@ -105,7 +114,6 @@ class Login extends React.Component {
 				loading: false
 			})
 		} else {
-			console.log(user);
 			//Navigate To Phone Auth
 			if(user.phoneNumber == null){
 				try{
@@ -119,9 +127,12 @@ class Login extends React.Component {
 					}
 					await AsyncStorage.setItem('loggedUser',JSON.stringify(loggedUser));
 				}catch(error){
-
+					console.log(error);
 				}
 				await this.setState({showLoadingAlert:false,navigateTo:"PhoneLogin"});
+				if(this.state.email == ""){
+					this.onLoadingModalDismiss();
+				}
 			}else{
 				console.log(user);
 
@@ -135,6 +146,7 @@ class Login extends React.Component {
 				}
 				await AsyncStorage.setItem('loggedUser',JSON.stringify(loggedUser));
 				await this.setState({showLoadingAlert:false,navigateTo:"Authenticating"});
+				console.log("HI");
 			}
 		}
 	}
@@ -178,14 +190,17 @@ class Login extends React.Component {
     		if(this.state.screen == 3){
     			this.setState({'screen':this.state.screen - 2});
     		}else{
-    			this.setState({'screen':this.state.screen - 1});
+    			if (this.state.screen == 1){
+    				this.props.navigation.navigate("HomeStack");
+    			}else{
+    				this.setState({'screen':this.state.screen - 1});
+    			}
     		}
     	}
     	return true;
     }
 
     componentWillUnmount () {
-    	BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton);
     	if(this.authObserver){
     		this.authObserver();
     	}
@@ -200,7 +215,7 @@ class Login extends React.Component {
     				justifyContent:"center",
     				alignItems:"center",
     			}}>
-    				<ActivityIndicator size="large" color="#00ff00" />
+    				<ActivityIndicator size="large" color="#034d7e" />
     			</View>
     		)
     		:
@@ -666,6 +681,7 @@ class Login extends React.Component {
 					</View>
 					<AwesomeAlert
 						show={this.state.showLoadingAlert}
+						onDismiss={this.onLoadingModalDismiss}
 						showProgress={true}
 						progressSize={20}
 						progressColor={"#000000"}

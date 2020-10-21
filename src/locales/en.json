@@ -38,6 +38,19 @@
   	"butToShippingInfo":"Shipping Information",
     "bottomSheetTitle":"Do you want to change item count ?",
     "bottomSheetChange":"Change",
+    "bottomSheetAdd":"Add New Address",
+    "butToPayment":"Go To Payment",
+    "deliveryNotesPlaceholder":"Delivery notes i.e. : \"Call me first\"",
+    "noDeliveryAddressMSG":"Choose Delivery Address",
+    "notAuthenticatedMessage":"Please login to proceed with the process",
+    "okMessage":"OK",
+    "notAuthenticatedTitle":"Error",
+    "Address":{
+      "textInputStreetAddress":"Input Address",
+      "textInputBuildingInfo":"Building Info i.e. \"Building and Apartment number\"",
+      "textInputMobileNumber":"Mobile Number",
+      "textInputAddressName":"Address Name i.e. \"Home\"",
+    }
   },
   "FlatListEmpty":{
   	"alert":"Sorry, Currently there is no items",

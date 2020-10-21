@@ -29,7 +29,7 @@ export default class Profile extends React.Component {
 					id:"2",
 					title:i18n.t('Profile.item.wishList'),
 					action: (() => {
-
+						this.props.navigation.navigate('Favorites');
 					})
 				},
 				{

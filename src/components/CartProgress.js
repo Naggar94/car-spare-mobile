@@ -57,10 +57,10 @@ export default class CartProgress extends React.Component {
 						borderColor:"#000000",
 						justifyContent:"center",
 						alignItems:"center",
-						backgroundColor:"#FFFFFF",
+						backgroundColor:this.props.screen >= 2?"#034d7e":"#FFFFFF",
 					}}>
 						<Text style={{
-							color:"#034d7e",
+							color:this.props.screen >= 2?"#FFFFFF":"#034d7e",
 							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 							fontSize:15
 						}}>2</Text>
@@ -84,10 +84,10 @@ export default class CartProgress extends React.Component {
 						borderWidth:1,
 						justifyContent:"center",
 						alignItems:"center",
-						backgroundColor:"#FFFFFF",
+						backgroundColor:this.props.screen >= 3?"#034d7e":"#FFFFFF",
 					}}>
 						<Text style={{
-							color:"#034d7e",
+							color:this.props.screen >= 3?"#FFFFFF":"#034d7e",
 							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 							fontSize:15
 						}}>3</Text>

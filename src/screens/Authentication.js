@@ -17,25 +17,23 @@ export default class Authentication extends React.Component {
 
 	componentDidMount = async () => {
 		try{
-			let loggedUser = await AsyncStorage.getItem('loggedUser');
+			var loggedUser = await AsyncStorage.getItem('loggedUser');
 			if(loggedUser !== null){
-				let userObj = JSON.parse(loggedUser);
+				var userObj = JSON.parse(loggedUser);
 				if(userObj.loggedIn){
 					let loginResponse = await SignInProvider.byMail(userObj.email,userObj.password);
-					if(!loginResponse.token){
-						console.log(loginResponse);
+					if(!loginResponse.success){
 						let signUpResponse = await SignUpProvider.fetch(userObj.phoneNumber,userObj.email,"mail",userObj.uid,userObj.password);
-						console.log(signUpResponse);
-						if(signUpResponse.token){
-							loggedUser.token = signUpResponse.token;
-							await AsyncStorage.setItem('loggedUser',loggedUser);
+						if(signUpResponse.success){
+							userObj.token = signUpResponse.payload.token;
+							await AsyncStorage.setItem('loggedUser',JSON.stringify(userObj));
 							this.props.navigation.navigate('App');
 						}else{
 							throw new Error('Sign up Failed');
 						}
 					}else{
-						loggedUser.token = loginResponse.token;
-						await AsyncStorage.setItem('loggedUser',loggedUser);
+						userObj.token = loginResponse.payload.token;
+						await AsyncStorage.setItem('loggedUser',JSON.stringify(userObj));
 						this.props.navigation.navigate('App');
 					}
 				}

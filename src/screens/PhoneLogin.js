@@ -32,7 +32,8 @@ export default class PhoneLogin extends React.Component {
     }
 
     componentDidMount() {
-    	BackHandler.addEventListener('hardwareBackPress', (this._handleBackButton));
+    	this.props.navigation.addListener('willFocus', this.componentDidAppear);
+		this.props.navigation.addListener('willBlur', this.componentDidBlur);
     }
 
     componentWillUnMount(){
@@ -41,12 +42,20 @@ export default class PhoneLogin extends React.Component {
     	}
     }
 
-    _handleBackButton = () => {
-    	if(this.state.screen > 1){
-    		this.setState({screen:this.state.screen - 1})
-    	}
-    	return true;
+    componentDidAppear = () => {
+    	BackHandler.addEventListener('hardwareBackPress', (this._handleBackButton));
     }
+
+    componentDidBlur = () => {
+    	BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton);
+    }
+
+	_handleBackButton = () => {
+		if(this.state.screen > 1){
+			this.setState({screen:this.state.screen - 1})
+		}
+		return true;
+	}
 
     startVerificationProcess = () => {
     	this.setState({showLoadingAlert:true});
@@ -62,6 +71,9 @@ export default class PhoneLogin extends React.Component {
 				//Show Loading Screen Then link and go to app
 				await this.setState({verificationId:phnAuthSnapshot.verificationId});
 				this.confirmCode(phnAuthSnapshot.code);
+			}else if(phnAuthSnapshot.state == 'error'){
+				console.log(phnAuthSnapshot);
+				this.setState({showLoadingAlert:false,showErrorDialog:true,errorMessage:"Error While Phone Verification"});
 			}
 		});
     }
@@ -82,7 +94,7 @@ export default class PhoneLogin extends React.Component {
 			userObj.phoneNumber = this.state.phoneNumber;
 			userObj.loggedIn = true;
 			await AsyncStorage.setItem('loggedUser',JSON.stringify(userObj));
-			this.props.navigation.navigate('Authenticating');
+			await this.setState({navigateTo:'Authenticating'});
 		}).catch((error) => {
 			//Show Error
 			console.log(error);
@@ -90,9 +102,17 @@ export default class PhoneLogin extends React.Component {
 		})
     }
 
+    onLoadingModalDismiss = () => {
+    	if(this.state.navigateTo != ""){
+    		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton);
+    		this.props.navigation.navigate(this.state.navigateTo);
+    	}
+    }
+
     constructor(props) {
 		super(props);
 		this.state = {
+			navigateTo:"",
 			verificationId:null,
 			confirmationCode:"",
 			phoneNumber:"",
@@ -298,6 +318,7 @@ export default class PhoneLogin extends React.Component {
 				}
 				<AwesomeAlert
 					show={this.state.showLoadingAlert}
+					onDismiss={this.onLoadingModalDismiss}
 					showProgress={true}
 					progressSize={20}
 					progressColor={"#000000"}

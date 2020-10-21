@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import CustomFastImage from './CustomFastImage';
 import { connect } from 'react-redux';
 import actions from './../actions';
+import FavoriteProvider from './../providers/Favorite';
 import i18n from '../i18n';
 
 class PartCard extends React.Component {
@@ -39,8 +40,15 @@ class PartCard extends React.Component {
 						alignSelf:"flex-end",
 						alignItems:"center",
 						justifyContent:"center"
-					}} onPress={() => {
-						this.setState({isFavorited:!this.state.isFavorited});
+					}} onPress={async () => {
+						if(!this.state.isFavorited){
+							this.props.showLoadingAlertDialog();
+							let response = await FavoriteProvider.add();
+							if(response.status){
+								await this.setState({isFavorited:!this.state.isFavorited,showLoadingPanel:false});
+							}
+							this.props.showLoadingAlertDialog(false);
+						}
 					}}>
 						<Icon name={this.state.isFavorited?"heart":"heart-outline"} size={35} color={"#821c00"} />
 					</TouchableOpacity>
@@ -98,34 +106,39 @@ class PartCard extends React.Component {
 							justifyContent:"center",
 							alignItems:"flex-end",
 						}}>
-							<TouchableOpacity style={{
-								backgroundColor:"#cd9500",
-								width:170,
-								height:40,
-								borderRadius:10,
-								justifyContent:"center",
-								alignItems:"flex-start",
-								padding:10,
-								flexDirection:"row"
-							}} onPress={() => {
-								let item = {};
-								item.id = this.props.id;
-								item.price = this.props.price;
-								item.name = this.props.name;
-								item.image = this.props.image;
-								item.modelName = this.props.modelName;
-								item.count = 1;
+							{
+								!this.props.doNotShowAddToCart?
+								<TouchableOpacity style={{
+									backgroundColor:"#cd9500",
+									width:170,
+									height:40,
+									borderRadius:10,
+									justifyContent:"center",
+									alignItems:"flex-start",
+									padding:10,
+									flexDirection:"row"
+								}} onPress={() => {
+									let item = {};
+									item.id = this.props.id;
+									item.price = this.props.price;
+									item.name = this.props.name;
+									item.image = this.props.image;
+									item.modelName = this.props.modelName;
+									item.count = 1;
 
-								this.props.showBottomSheet(item);
-								//this.props.AddToCart(item,this.props.cart);
-							}}>
-								<Text style={{
-									flex:10,
-									color:"#FFFFFF",
-									fontSize:15
-								}}>{i18n.t('parts.addToCart')}</Text>
-								<Icon name="cart" size={20} color={"#FFFFFF"} style={{flex:2}}/>
-							</TouchableOpacity>
+									this.props.showBottomSheet(item);
+									//this.props.AddToCart(item,this.props.cart);
+								}}>
+									<Text style={{
+										flex:10,
+										color:"#FFFFFF",
+										fontSize:15
+									}}>{i18n.t('parts.addToCart')}</Text>
+									<Icon name="cart" size={20} color={"#FFFFFF"} style={{flex:2}}/>
+								</TouchableOpacity>
+								:
+								null
+							}
 						</View>
 					</View>
 				</View>
