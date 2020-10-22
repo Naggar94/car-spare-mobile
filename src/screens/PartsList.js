@@ -108,6 +108,18 @@ class PartsList extends React.Component {
 
 	}
 
+	onFavoriteRemove = (index) => {
+		let parts = this.state.parts;
+		parts[index].favourite = false;
+		this.setState({parts});
+	}
+
+	setFavorite = (index) => {
+		let parts = this.state.parts;
+		parts[index].favourite = true;
+		this.setState({parts});
+	}
+
 	renderContent = () => {
 		return(
 			<View
@@ -246,7 +258,9 @@ class PartsList extends React.Component {
 									refresh={this._onRefresh} 
 									refreshing={this.state.refreshing} 
 									showBottomSheet={this.doShowBottomSheet} 
-									showLoadingAlertDialog={this.showLoadingAlertDialog} />
+									showLoadingAlertDialog={this.showLoadingAlertDialog}
+									setFavorite={this.setFavorite}
+									onFavoriteRemove={this.onFavoriteRemove} />
 							:
 								<View 
 									style={{

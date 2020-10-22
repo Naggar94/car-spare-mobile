@@ -11,7 +11,7 @@ class PartCard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isFavorited:false,
+			
 		};
 	}
 
@@ -41,16 +41,38 @@ class PartCard extends React.Component {
 						alignItems:"center",
 						justifyContent:"center"
 					}} onPress={async () => {
-						if(!this.state.isFavorited){
+						if(!this.props.isFavorite){
 							this.props.showLoadingAlertDialog();
-							let response = await FavoriteProvider.add();
-							if(response.status){
-								await this.setState({isFavorited:!this.state.isFavorited,showLoadingPanel:false});
+							try{
+								let response = await FavoriteProvider.add(this.props.id,
+									this.props.mainCategoryId,
+									this.props.modelYear,
+									this.props.modelId,
+									this.props.brandId);
+								console.log(response);
+								if(response.status){
+									this.props.setFavorite(this.props.itemIndex);
+								}
+							}catch(err){
+								console.log(err);
 							}
+
+							this.props.showLoadingAlertDialog(false);
+						}else{
+							this.props.showLoadingAlertDialog();
+							try{
+								let response = await FavoriteProvider.remove(this.props.id);
+								if(response.status){
+									this.props.onFavoriteRemove(this.props.itemIndex);
+								}
+							}catch(err){
+								console.log(err);
+							}
+
 							this.props.showLoadingAlertDialog(false);
 						}
 					}}>
-						<Icon name={this.state.isFavorited?"heart":"heart-outline"} size={35} color={"#821c00"} />
+						<Icon name={this.props.isFavorite?"heart":"heart-outline"} size={35} color={"#821c00"} />
 					</TouchableOpacity>
 					<CustomFastImage width={"100%"} height={"100%"} src={this.props.image?this.props.image:"https://www.carlogos.org/logo/Chevrolet-logo-2013-2560x1440.png"}></CustomFastImage>
 				</View>

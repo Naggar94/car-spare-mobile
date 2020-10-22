@@ -19,6 +19,14 @@ export default class BaseTypePartsList extends React.Component {
 		this.props.showLoadingAlertDialog(showLoadingAlert);
 	}
 
+	setFavorite = (index) => {
+		this.props.setFavorite(index);
+	}
+
+	onFavoriteRemove = (index) => {
+		this.props.onFavoriteRemove(index);
+	}
+
 	render(){
 		return(
 			<View
@@ -49,12 +57,20 @@ export default class BaseTypePartsList extends React.Component {
 		    				<PartCard 
 		    					key={item.partId} 
 		    					id={item.partId}
+		    					itemIndex={index}
+		    					brandId={item.brandId}
+		    					modelId={item.modelId}
+		    					modelYear={item.modelYear}
+		    					mainCategoryId={item.mainCategoryId}
 		    					name={item.partName} 
 		    					description={item.partDescription} 
 		    					image={item.partImgURL} 
 		    					price={item.partPrice}
+		    					isFavorite={item.favourite}
 		    					showBottomSheet={this.doShowBottomSheet}
-		    					showLoadingAlertDialog={this.showLoadingAlertDialog} />
+		    					showLoadingAlertDialog={this.showLoadingAlertDialog}
+		    					setFavorite={this.setFavorite}
+		    					onFavoriteRemove={this.onFavoriteRemove} />
 		    			)
 		    		}}
 		    		keyExtractor={(item,index) => item.partId}
