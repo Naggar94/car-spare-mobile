@@ -59,15 +59,16 @@ class PartsList extends React.Component {
 	_loadData = async () => {
 		try{
 			let response = await PartProvider.fetch(this.props.model,this.props.submodel,this.props.date,this.props.type);
-			console.log(response.data.spareParts);
+			console.log(response.spareParts);
 			let state = {
 				hasLoadedParts:true,
-				parts:response.data.spareParts,
+				parts:response.spareParts,
 				refreshing:false,
 				initialLoadingForParts:true,
 			};
 			this.setState(state);
 		}catch(e){
+			console.log(e);
 			//Show Error View
 		}
 	}

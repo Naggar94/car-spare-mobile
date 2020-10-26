@@ -52,7 +52,7 @@ export default class Cart extends React.Component {
 					this.state.showTint?
 					<View style={{
 						position:"absolute",
-						height:"100%",
+						height:"55%",
 						width:"100%",
 						backgroundColor:"rgba(0,0,0,0.5)",
 						zIndex:2,
@@ -61,6 +61,31 @@ export default class Cart extends React.Component {
 							//this.closeBottomSheet();
 							this.setState({showTint:false});
 						}} style={{
+							width:"100%",
+							height:"100%",
+						}}>
+							<View style={{
+								width:"100%",
+								height:"100%",
+							}}>
+							</View>
+						</TouchableWithoutFeedback>
+					</View>
+					:
+					null
+				}
+
+				{
+					this.state.showTint?
+					<View style={{
+						position:"absolute",
+						top:"55%",
+						height:"45%",
+						width:"100%",
+						backgroundColor:"rgba(0,0,0,0.5)",
+						zIndex:1,
+					}}>
+						<TouchableWithoutFeedback style={{
 							width:"100%",
 							height:"100%",
 						}}>

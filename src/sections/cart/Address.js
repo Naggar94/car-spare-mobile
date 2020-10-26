@@ -3,14 +3,14 @@ import { View, Text, TextInput, I18nManager, Platform,BackHandler, TouchableOpac
 import CustomFastImage from '../../components/CustomFastImage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import i18n from '../../i18n';
-import { FlatList } from 'react-navigation';
+import { FlatList, withNavigation } from 'react-navigation';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import FlatListEmptyView from './../../components/FlatListEmptyView';
 import CartItem from './../../components/CartItem';
 import AddressProvider from './../../providers/Address';
 
-export default class Address extends React.Component {
+class Address extends React.Component {
 	constructor(props) {
 		super(props);
 		this.sheetRef = React.createRef();
@@ -71,8 +71,10 @@ export default class Address extends React.Component {
 		this.closeBottomSheet();
 	}
 
-	componentDidMount(){
-		BackHandler.addEventListener('hardwareBackPress', (this._handleBackButton));
+	componentDidMount = () => {
+		//console.log(this.props.navigation);
+		this.props.navigation.addListener('willFocus', this.componentDidAppear);
+		this.props.navigation.addListener('willBlur', this.componentDidBlur);
 	}
 
 	componentDidUpdate() {
@@ -81,9 +83,27 @@ export default class Address extends React.Component {
 		}
 	}
 
-	_handleBackButton = () => {
+	componentWillUnMount = () => {
 		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton);
-		this.props.itemsPage();
+	}
+
+	componentDidAppear = () => {
+		BackHandler.addEventListener('hardwareBackPress', (this._handleBackButton));
+	}
+
+	componentDidBlur = () => {
+		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton);
+	}
+
+	_handleBackButton = () => {
+		console
+		// BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton);
+		if(this.state.isTintShowed){
+			this.closeBottomSheet();
+		}else{
+			this.props.itemsPage();
+		}
+
 		return true;
     }
 
@@ -529,3 +549,5 @@ export default class Address extends React.Component {
 		)
 	}
 }
+
+export default withNavigation(Address);
