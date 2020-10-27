@@ -109,6 +109,7 @@ class Login extends React.Component {
 	}
 
 	onAuthStateChanged = async (user) => {
+		this.setState({errorMessage:""});
 		if (!user) {
 			this.setState({
 				loading: false
@@ -154,6 +155,10 @@ class Login extends React.Component {
 	onLoadingModalDismiss = () => {
 		if(this.state.navigateTo != ""){
 			this.props.navigation.navigate(this.state.navigateTo);	
+		}
+
+		if(this.state.errorMessage != ""){
+			this.setState({showErrorDialog:true});
 		}
 		
 	}
@@ -485,6 +490,7 @@ class Login extends React.Component {
 				    			borderRadius:8
 							}} onPress={() => {
 								//this.fakeSignIn();
+								console.log("SDFSDFDS");
 								if(this.state.email == ""){
 									this.setState({errorMessage:i18n.t('Login.emailSignInErrorMessages.emailMissing'),showErrorDialog:true});
 									return;
@@ -507,7 +513,7 @@ class Login extends React.Component {
 									}else if(error.code == "auth/wrong-password"){
 										errorMessage = i18n.t('Login.emailSignInErrorMessages.authIncorrectPassword');
 									}
-									this.setState({showLoadingAlert:false,showErrorDialog:true,errorMessage:errorMessage});
+									this.setState({showLoadingAlert:false,errorMessage:errorMessage});
 								})
 							}}>
 
@@ -666,7 +672,8 @@ class Login extends React.Component {
 									}else if (error.code === "auth/email-already-in-use") {
 										errorMessage = i18n.t('Login.emailSignInErrorMessages.authEmailAlreadyInUse');
 									}
-									this.setState({showLoadingAlert:false,showErrorDialog:true,errorMessage:errorMessage});
+									console.log("HERE");
+									this.setState({showLoadingAlert:false,errorMessage:errorMessage});
 								})
 							}}>
 

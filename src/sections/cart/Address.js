@@ -167,6 +167,7 @@ class Address extends React.Component {
 				paddingBottom:20,
 				alignItems:"center",
 				flexDirection:"column",
+				zIndex:200,
 			}}>
 				<View style={{
 					backgroundColor:"rgba(0,0,0,0.4)",

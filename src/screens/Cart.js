@@ -18,7 +18,7 @@ export default class Cart extends React.Component {
 		super(props);
 		this.state = {
 			showTint:false,
-			screen:2,
+			screen:1,
 			showLoadingAlert:false,
 		};
 	}
