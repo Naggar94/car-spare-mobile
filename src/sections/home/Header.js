@@ -14,10 +14,10 @@ export default class Header extends React.Component {
 		return(
 			<View style={{
 				width:'100%',
-				height:180,
+				height:Platform.OS == 'ios'?200:180,
 				alignItems:'flex-start',
 				flexDirection:'column',
-				justifyContent:'flex-start',
+				justifyContent:Platform.OS == 'ios'?'flex-end':'flex-start',
 				backgroundColor:'#034d7e',
 				padding:20,
 				marginBottom:20,

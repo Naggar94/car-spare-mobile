@@ -1,13 +1,11 @@
 import React from 'react';
-import { View, Text, TextInput, I18nManager, Platform, TouchableOpacity,Keyboard } from 'react-native';
+import { View, Text, TextInput, I18nManager, Platform, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import actions from './../../actions';
 import CustomFastImage from '../../components/CustomFastImage';
 import Icon from 'react-native-vector-icons/Ionicons';
 import i18n from '../../i18n';
 import { FlatList } from 'react-navigation';
-import Animated from 'react-native-reanimated';
-import BottomSheet from 'reanimated-bottom-sheet';
 import FlatListEmptyView from './../../components/FlatListEmptyView';
 import CartItem from './../../components/CartItem';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -16,22 +14,17 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 class Items extends React.Component {
 	constructor(props) {
 		super(props);
-		this.sheetRef = React.createRef();
 		this.state = {
-			isTintShowed:false,
-			bottomSheetItem:null
 		};
 	}
 
 	doShowBottomSheet = (item) => {
-		this.props.showTint();
-		this.setState({bottomSheetItem:item,isTintShowed:true});
-		this.sheetRef.current.snapTo(0);
+		this.props.setBottomSheetItem(item);
+		this.props.doShowBottomSheet();
 	}
 
 	closeBottomSheet = () => {
-		Keyboard.dismiss();
-		this.sheetRef.current.snapTo(1);
+		this.props.doShowBottomSheet(false);
 		this.removeTint();
 	}
 
@@ -47,13 +40,7 @@ class Items extends React.Component {
 		this.props.RemovePartCount(payload,this.props.cart)
 	}
 
-	onAcceptChangingItemCount = () => {
-		this.props.ChangePartCount(this.state.bottomSheetItem,this.props.cart);
-		this.closeBottomSheet();
-	}
-
 	removeTint = () => {
-		this.setState({isTintShowed:false});
 		this.props.showTint(false);
 	}
 
@@ -201,7 +188,7 @@ class Items extends React.Component {
 							try{
 								var loggedUser = await AsyncStorage.getItem('loggedUser');
 								if(loggedUser != null){
-									this.props.addressPage();
+									//this.props.addressPage();
 								}else{
 									this.setState({showErrorAlert:true});
 								}
@@ -215,15 +202,6 @@ class Items extends React.Component {
 						fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
 					}}>{i18n.t('cart.butToShippingInfo')}</Text></TouchableOpacity>
 				</View>
-
-				<BottomSheet
-					ref={this.sheetRef}
-					snapPoints={['35%', 0]}
-					borderRadius={10}
-					renderContent={this.renderContent}
-					initialSnap={1}
-					onCloseEnd={this.removeTint}
-				/>
 				<AwesomeAlert
 					show={this.state.showErrorAlert}
 					closeOnTouchOutside={true}

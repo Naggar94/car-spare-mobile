@@ -167,7 +167,6 @@ class Address extends React.Component {
 				paddingBottom:20,
 				alignItems:"center",
 				flexDirection:"column",
-				zIndex:200,
 			}}>
 				<View style={{
 					backgroundColor:"rgba(0,0,0,0.4)",
@@ -206,10 +205,12 @@ class Address extends React.Component {
 							<TextInput 
 								ref={this.streetAddressRef}
 								style={{
+									height:"100%",
 									width:"100%",
 								}}
 								textAlign={I18nManager.isRTL?'right':'left'}
 								placeholder={i18n.t('cart.Address.textInputStreetAddress')}
+								placeholderTextColor="#000"
 								onChange={(text) => {
 									this.setState({streetAddress:text});
 								}}
@@ -245,10 +246,12 @@ class Address extends React.Component {
 							<TextInput 
 								ref={this.buildingInfoRef}
 								style={{
+									height:"100%",
 									width:"100%",
 								}}
 								textAlign={I18nManager.isRTL?'right':'left'}
 								placeholder={i18n.t('cart.Address.textInputBuildingInfo')}
+								placeholderTextColor="#000"
 								onChange={(text) => {
 									this.setState({buildingInfo:text});
 								}}
@@ -284,10 +287,12 @@ class Address extends React.Component {
 							<TextInput 
 								ref={this.mobileNumberRef}
 								style={{
+									height:"100%",
 									width:"100%",
 								}}
 								textAlign={I18nManager.isRTL?'right':'left'}
 								placeholder={i18n.t('cart.Address.textInputMobileNumber')}
+								placeholderTextColor="#000"
 								onChange={(text) => {
 									this.setState({mobileNumber:text});
 								}}
@@ -323,10 +328,12 @@ class Address extends React.Component {
 							<TextInput 
 								ref={this.addressNameRef}
 								style={{
+									height:"100%",
 									width:"100%",
 								}}
 								textAlign={I18nManager.isRTL?'right':'left'}
 								placeholder={i18n.t('cart.Address.textInputAddressName')}
+								placeholderTextColor="#000"
 								onChange={(text) => {
 									this.setState({addressName:text});
 								}}

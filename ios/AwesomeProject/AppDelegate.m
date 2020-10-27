@@ -29,7 +29,17 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [FIRApp configure];
+  NSString *filePath;
+  #ifdef DEBUG
+    NSLog(@"[FIREBASE] Development mode.");
+    filePath = [[NSBundle mainBundle] pathForResource:@"GoogleService-Info" ofType:@"plist" inDirectory:@"Debug"];
+  #else
+    NSLog(@"[FIREBASE] Production mode.");
+    filePath = [[NSBundle mainBundle] pathForResource:@"GoogleService-Info" ofType:@"plist" inDirectory:@"Release"];
+  #endif
+
+    FIROptions *options = [[FIROptions alloc] initWithContentsOfFile:filePath];
+    [FIRApp configureWithOptions:options];
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif

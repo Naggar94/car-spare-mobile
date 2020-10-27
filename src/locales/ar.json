@@ -46,10 +46,10 @@
     "okMessage":"تم",
     "notAuthenticatedTitle":"خطأ",
     "Address":{
-      "textInputStreetAddress":"أدخ العنوان",
+      "textInputStreetAddress":"أدخل العنوان",
       "textInputBuildingInfo":"تفاصيل المبني",
       "textInputMobileNumber":"رقم الهاتف",
-      "textInputAddressName":"اسم العنوان مثل )المنزل(",
+      "textInputAddressName":"اسم العنوان مثل (المنزل)",
     }
   },
   "FlatListEmpty":{
