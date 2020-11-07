@@ -2,8 +2,9 @@ import React from 'react';
 import { Text, View, I18nManager, TouchableOpacity, TouchableWithoutFeedback, Platform } from 'react-native';
 import CustomFastImage from './CustomFastImage';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { withNavigation } from 'react-navigation';
 
-export default class CartItem extends React.Component {
+class CartItem extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -117,7 +118,13 @@ export default class CartItem extends React.Component {
 								item.id = this.props.id;
 								item.counter = this.props.count;
 								item.name = this.props.name;
-								this.props.counter(item);
+								if(Platform.OS == 'android'){
+									this.props.counter(item);
+								}else{
+									this.props.navigation.navigate('ChangeCartQuantity',{
+										bottomSheetItem: item,
+									});
+								}
 							}}>
 								<Text style={{
 									fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
@@ -161,3 +168,5 @@ export default class CartItem extends React.Component {
 		);
 	}
 }
+
+export default withNavigation(CartItem);

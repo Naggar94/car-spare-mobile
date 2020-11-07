@@ -1,35 +1,40 @@
 import React from 'react';
-import { View, Text, TextInput, I18nManager, Platform, TouchableOpacity,KeyboardAvoidingView } from 'react-native';
-import i18n from '../../../i18n';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { View, Text, TextInput, I18nManager, Platform, TouchableOpacity,Keyboard } from 'react-native';
+import { connect } from 'react-redux';
+import actions from './../actions';
+import i18n from '../i18n';
 
-export default class Cart extends React.Component {
-	constructor(props){
-		super(props);
-		this.state = {
-			counter: this.props.bottomSheetItem?this.props.bottomSheetItem.counter:0
+class ChangeCartQuantity extends React.Component {
+	static navigationOptions = ({ navigation }) => {
+		return{
+			title:i18n.t('cart.ChangeCartQuantity.title'),
 		}
-	}
+	};
 
-	render(){
-		return(
-			<View
+	constructor(props) {
+		super(props)
+		this.state = {
+			bottomSheetItem: this.props.navigation.state.params.bottomSheetItem
+		}
+    }
+
+    onAcceptChangingItemCount = () => {
+    	this.props.ChangePartCount(this.state.bottomSheetItem,this.props.cart);
+    	this.props.navigation.goBack(null);
+    }
+
+    render(){
+    	return(
+	    	<View
 				style={{
+					backgroundColor: 'white',
 					padding: 10,
 					height: "100%",
 					paddingBottom:20,
 					alignItems:"center",
 					flexDirection:"column",
-					backgroundColor:"white",
 				}}
 			>
-				<View style={{
-					backgroundColor:"rgba(0,0,0,0.4)",
-					width:"40%",
-					height:5,
-					borderRadius:10
-				}}>
-				</View>
 				<View style={{
 					flexWrap:'wrap',
 					width:"100%",
@@ -45,7 +50,7 @@ export default class Cart extends React.Component {
 						fontSize:17,
 						color:"rgba(0,0,0,0.5)",
 						marginTop:10,
-					}}>{this.props.bottomSheetItem?this.props.bottomSheetItem.name:""}</Text>
+					}}>{this.state.bottomSheetItem?this.state.bottomSheetItem.name:""}</Text>
 					<TextInput style={{
 						backgroundColor:"#f5f6f8",
 						borderColor:'rgba(0,0,0,0.1)',
@@ -54,13 +59,15 @@ export default class Cart extends React.Component {
 						width:"100%",
 						marginTop:10,
 						paddingHorizontal:10,
-					}} defaultValue={this.props.bottomSheetItem?this.props.bottomSheetItem.counter.toString():""}
+					}} defaultValue={this.state.bottomSheetItem?this.state.bottomSheetItem.counter.toString():""}
 					autoCompleteType="off"
 					keyboardType={"numeric"}
 					textAlign={i18n.locale == 'en'?"left":"right"}
 					onChangeText={(count) => {
 						if(count != "" && parseInt(count) > 0){
-							this.setState({counter:parseInt(count)});
+							let bottomSheetItem = this.state.bottomSheetItem;
+							bottomSheetItem.counter = parseInt(count);
+							this.setState({bottomSheetItem});
 						}
 					}}></TextInput>
 				</View>
@@ -77,7 +84,7 @@ export default class Cart extends React.Component {
 						width:"100%",
 						marginTop:10,
 						borderRadius:10,
-					}} onPress={() => {this.props.onAcceptChangingItemCount(this.state.counter)}}>
+					}} onPress={() => {this.onAcceptChangingItemCount()}}>
 						<Text style={{
 							color:"#FFFFFF",
 							fontFamily:Platform.OS === 'ios'?"Roboto-Bold":"Robotobold",
@@ -86,6 +93,18 @@ export default class Cart extends React.Component {
 					</TouchableOpacity>
 				</View>
 			</View>
-		);
+	    );
+    }
+}
+
+const mapStateToProps = (state) => {
+	return {
+		cart: state.cart.list,
 	}
 }
+
+const mapDispatchToProps = () => {
+	return actions
+}
+
+export default connect(mapStateToProps,mapDispatchToProps())(ChangeCartQuantity);

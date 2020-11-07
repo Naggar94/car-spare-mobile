@@ -29,6 +29,8 @@ import ManufactureDateListScreen from '../screens/ManufactureDateList';
 import PartsListScreen from '../screens/PartsList';
 import CartScreen from '../screens/Cart';
 import FavoritesScreen from '../screens/Favorites';
+import ChangeCartQuantityScreen from '../screens/ChangeCartQuantity';
+import ChangeShippingAddressScreen from '../screens/ChangeShippingAddress';
 import i18n from './../i18n';
 
 const HomeStack = createStackNavigator({  
@@ -64,6 +66,8 @@ HomeStack.navigationOptions = ({ navigation }) => {
 
 const CartStack = createStackNavigator({  
 	Cart:CartScreen,
+	ChangeCartQuantity:ChangeCartQuantityScreen,
+	ChangeShippingAddress:ChangeShippingAddressScreen
 },
 {
 	defaultNavigationOptions: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, I18nManager} from 'react-native';
+import { Text, View, I18nManager, Image} from 'react-native';
 import i18n from './../i18n';
 import AsyncStorage from '@react-native-community/async-storage';
 import RNRestart from 'react-native-restart';
@@ -68,6 +68,10 @@ class Splash extends React.Component {
 	    		width:"100%",
 	    		height:"100%",
 	    	}}>
+	    		<Image source={require('./../images/carspare.png')} style={{
+	    			width:200,
+	    			height:200,
+	    		}} />
 	    		<Text style={{
 	    			color:"#034d7e",
 					fontSize:35,

@@ -50,6 +50,23 @@
       "textInputBuildingInfo":"Building Info i.e. \"Building and Apartment number\"",
       "textInputMobileNumber":"Mobile Number",
       "textInputAddressName":"Address Name i.e. \"Home\"",
+    },
+    "ChangeShippingAddress":{
+      "title":"Choose Shipping Address"
+    },
+    "ChangeCartQuantity":{
+      "title":"Change Item Quantity"
+    },
+    "Payment":{
+      "cashOnDelivery":"Cash On Delivery",
+      "voucher":"Promo Code",
+      "total":"Total",
+      "totalOrders":"Total Items",
+      "shipping":"Shipping",
+      "egp":"EGP",
+      "pay":"Submit",
+      "success":"Transaction Submitted Successfully.",
+      "failure":"Transaction failed, Please Try Again."
     }
   },
   "FlatListEmpty":{

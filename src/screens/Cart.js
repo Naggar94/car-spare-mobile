@@ -1,12 +1,14 @@
 import React from 'react';
-import { Text, View, I18nManager, TouchableOpacity, TouchableWithoutFeedback, Platform, TextInput, Keyboard } from 'react-native';
+import { Text, View, I18nManager, TouchableOpacity, TouchableWithoutFeedback, BackHandler, Platform, TextInput, Keyboard } from 'react-native';
 import CartProgress from './../components/CartProgress';
 import CustomFastImage from './../components/CustomFastImage';
 import i18n from '../i18n';
 import CartItemsList from './../sections/cart/Items';
 import AddressView from './../sections/cart/Address';
+import PaymentView from './../sections/cart/Payment';
 import AwesomeAlert from 'react-native-awesome-alerts';
 import CartBottomSheet from './../sections/cart/sheets/Cart';
+import AddressBottomSheet from './../sections/cart/sheets/Address';
 import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { connect } from 'react-redux';
@@ -24,14 +26,19 @@ class Cart extends React.Component {
 		this.sheetRef = React.createRef();
 		this.state = {
 			showTint:false,
-			screen:1,
+			screen:3,
 			showLoadingAlert:false,
-			bottomSheetItem:null
+			bottomSheetItem:null,
+			addresses:[]
 		};
 	}
 
 	setBottomSheetItem = (bottomSheetItem) => {
 		this.setState({bottomSheetItem})
+	}
+
+	setAddresses = (addresses) => {
+		this.setState({addresses})
 	}
 
 	showTint = async (show = true) => {
@@ -53,9 +60,45 @@ class Cart extends React.Component {
 		this.setState({screen:1});
 	}
 
+	paymentPage = () => {
+		this.setState({screen:3});
+	}
+
 	shoeLoadingAlert = (showLoadingAlert = true) => {
 		this.setState({showLoadingAlert})
 	}
+
+	componentDidMount = () => {
+		this.props.navigation.addListener('willFocus', this.componentDidAppear);
+		this.props.navigation.addListener('willBlur', this.componentDidBlur);
+	}
+
+	componentWillUnMount = () => {
+		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton);
+	}
+
+	componentDidAppear = () => {
+		BackHandler.addEventListener('hardwareBackPress', (this._handleBackButton));
+	}
+
+	componentDidBlur = () => {
+		BackHandler.removeEventListener('hardwareBackPress', this._handleBackButton);
+	}
+
+	_handleBackButton = () => {
+		if(this.state.screen == 2){
+			this.setState({screen:1})
+		}else if(this.state.screen == 3){
+			this.setState({screen:2});
+		}else{
+			if(this.state.showTint && Platform.OS == 'android'){
+				this.doShowBottomSheet(false);
+			}else{
+				this.props.navigation.navigate('Home');	
+			}
+		}
+		return true;
+    }
 
 	renderContent = () => {
 		if(this.state.screen == 1){
@@ -63,6 +106,12 @@ class Cart extends React.Component {
 				<CartBottomSheet 
 					bottomSheetItem={this.state.bottomSheetItem}
 					onAcceptChangingItemCount={this.onAcceptChangingItemCount} />
+			)
+		}else{
+			return(
+				<AddressBottomSheet 
+					showLoadingAlert={this.showLoadingAlert}
+					addresses={this.state.addresses}/>
 			)
 		}
 	}
@@ -133,12 +182,23 @@ class Cart extends React.Component {
 							setBottomSheetItem={this.setBottomSheetItem}
 							doShowBottomSheet={this.doShowBottomSheet}/>
 						:
+						this.state.screen == 2?
 						<AddressView 
 							showTint={this.showTint} 
 							isTintShowed={this.state.showTint} 
 							itemsPage={this.itemsPage}
-							showLoadingAlert={this.showLoadingAlert}/>
+							showLoadingAlert={this.showLoadingAlert}
+							setAddresses={this.setAddresses}
+							doShowBottomSheet={this.doShowBottomSheet}
+							paymentPage={this.paymentPage}/>
+						:
+						<PaymentView 
+							showTint={this.showTint} 
+							isTintShowed={this.state.showTint} 
+							addressPage={this.addressPage}
+							itemsPage={this.itemsPage}/>
 						}
+
 				</View>
 				<AwesomeAlert
 					show={this.state.showLoadingAlert}

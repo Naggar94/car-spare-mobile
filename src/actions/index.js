@@ -100,9 +100,27 @@ const cartActions = {
 	}
 }
 
+const addressActions = {
+	SetAddress: (addressId,addressName) => {
+		return({
+			type:"SetAddress",
+			payload:{
+				addressId:addressId,
+				addressName:addressName
+			},
+		})
+	},
+	ResetAddress: () => {
+		return({
+			type:"ResetAddress",
+		})
+	}
+}
+
 const actions = {
 	...filterActions,
 	...cartActions,
+	...addressActions,
 }
 
 export default actions;

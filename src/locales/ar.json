@@ -50,6 +50,23 @@
       "textInputBuildingInfo":"تفاصيل المبني",
       "textInputMobileNumber":"رقم الهاتف",
       "textInputAddressName":"اسم العنوان مثل (المنزل)",
+    },
+    "ChangeShippingAddress":{
+      "title":"أختر عنوان التوصيل"
+    },
+    "ChangeCartQuantity":{
+      "title":"تغيير كمية المنتج"
+    },
+    "Payment":{
+      "cashOnDelivery":"الدفع عند الإستلام",
+      "voucher":"برومو كود",
+      "total":"الإجمالي",
+      "totalOrders":"إجمالي الطلب",
+      "shipping":"التوصيل",
+      "egp":"ج.م.",
+      "pay":"أدفع",
+      "success":"لفد تمت العملية بنجاح",
+      "failure":"حدث خطأ خلال تسجيل الطلب، برجاء محاولة مره أخري"
     }
   },
   "FlatListEmpty":{
