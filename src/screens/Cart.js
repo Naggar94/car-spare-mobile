@@ -13,11 +13,28 @@ import Animated from 'react-native-reanimated';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { connect } from 'react-redux';
 import actions from './../actions';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 class Cart extends React.Component {
 	static navigationOptions = ({ navigation }) => {
+		const { params = {} } = navigation.state;
 		return{
 			title:i18n.t('cart.title'),
+			headerLeft:() => (
+				params.isBackButton?
+				<TouchableOpacity style={{
+					width:40,
+					height:"100%",
+					justifyContent:"center",
+					alignItems:"center",
+				}} onPress={() => {
+					navigation.getParam('handleBackButton')();
+				}}>
+					<Icon name="keyboard-arrow-right" size={25} color={"#FFFFFF"} />
+				</TouchableOpacity>
+				:
+				null
+			)
 		}
 	};
 
@@ -31,6 +48,8 @@ class Cart extends React.Component {
 			bottomSheetItem:null,
 			addresses:[]
 		};
+
+		this.props.navigation.setParams({'isBackButton' : false, 'handleBackButton': this._handleBackButton});
 	}
 
 	setBottomSheetItem = (bottomSheetItem) => {
@@ -53,14 +72,17 @@ class Cart extends React.Component {
 	}
 
 	addressPage = () => {
+		this.props.navigation.setParams({'isBackButton' : true});
 		this.setState({screen:2});
 	}
 
 	itemsPage = () => {
+		this.props.navigation.setParams({'isBackButton' : false});
 		this.setState({screen:1});
 	}
 
 	paymentPage = () => {
+		this.props.navigation.setParams({'isBackButton' : true});
 		this.setState({screen:3});
 	}
 
@@ -87,10 +109,12 @@ class Cart extends React.Component {
 
 	_handleBackButton = () => {
 		if(this.state.screen == 2){
+			this.props.navigation.setParams({'isBackButton' : false})
 			this.setState({screen:1})
 		}else if(this.state.screen == 3){
 			this.setState({screen:2});
 		}else{
+			this.props.navigation.setParams({'isBackButton' : false})
 			if(this.state.showTint && Platform.OS == 'android'){
 				this.doShowBottomSheet(false);
 			}else{
