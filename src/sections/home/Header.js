@@ -14,7 +14,7 @@ export default class Header extends React.Component {
 		return(
 			<View style={{
 				width:'100%',
-				height:Platform.OS == 'ios'?200:180,
+				height:Platform.OS == 'ios'?i18n.locale == 'ar'?215:240:180,
 				alignItems:'flex-start',
 				flexDirection:'column',
 				justifyContent:Platform.OS == 'ios'?'flex-end':'flex-start',

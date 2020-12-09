@@ -418,6 +418,7 @@ class Login extends React.Component {
 				<View>
 					<View style={{
 						padding:10,
+						alignItems:"flex-start"
 					}}>
 						<Text style={{
 							fontSize:18,
@@ -447,8 +448,10 @@ class Login extends React.Component {
 								borderWidth:1,
 								height:50,
 								paddingHorizontal:10,
+								textAlign:i18n.locale == "ar" ? "right" : "left"
 							}}
 							placeholder={i18n.t('Login.email')}
+							placeholderTextColor="#C7C7CD"
 							autoCompleteType={"email"}
 							textContentType={"emailAddress"}
 							keyboardType={"email-address"}
@@ -464,8 +467,10 @@ class Login extends React.Component {
 								height:50,
 								marginTop:15,
 								paddingHorizontal:10,
+								textAlign:i18n.locale == "ar" ? "right" : "left"
 							}}
 							placeholder={i18n.t('Login.password')}
+							placeholderTextColor="#C7C7CD"
 							autoCompleteType={"password"}
 							textContentType={"password"}
 							secureTextEntry={true}
@@ -557,6 +562,7 @@ class Login extends React.Component {
 				<View>
 					<View style={{
 						padding:10,
+						alignItems:"flex-start"
 					}}>
 						<Text style={{
 							fontSize:18,
@@ -586,8 +592,10 @@ class Login extends React.Component {
 								borderWidth:1,
 								height:50,
 								paddingHorizontal:10,
+								textAlign:i18n.locale == "ar" ? "right" : "left"
 							}}
 							placeholder={i18n.t('Login.email')}
+							placeholderTextColor="#C7C7CD"
 							autoCompleteType={"email"}
 							textContentType={"emailAddress"}
 							keyboardType={"email-address"}
@@ -603,8 +611,10 @@ class Login extends React.Component {
 								height:50,
 								marginTop:15,
 								paddingHorizontal:10,
+								textAlign:i18n.locale == "ar" ? "right" : "left"
 							}}
 							placeholder={i18n.t('Login.password')}
+							placeholderTextColor="#C7C7CD"
 							autoCompleteType={"password"}
 							textContentType={"password"}
 							secureTextEntry={true}
@@ -620,8 +630,10 @@ class Login extends React.Component {
 								height:50,
 								marginTop:15,
 								paddingHorizontal:10,
+								textAlign:i18n.locale == "ar" ? "right" : "left"
 							}}
 							placeholder={i18n.t('Login.confirmPassword')}
+							placeholderTextColor="#C7C7CD"
 							autoCompleteType={"password"}
 							textContentType={"password"}
 							secureTextEntry={true}
