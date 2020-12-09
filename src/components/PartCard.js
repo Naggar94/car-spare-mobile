@@ -72,7 +72,7 @@ class PartCard extends React.Component {
 							this.props.showLoadingAlertDialog(false);
 						}
 					}}>
-						<Icon name={this.props.isFavorite?"heart":"heart-outline"} size={35} color={"#821c00"} />
+						<Icon name={this.props.isFavorite?"heart":"heart-outline"} size={35} color={"#ff3d3d"} />
 					</TouchableOpacity>
 					<CustomFastImage width={"100%"} height={"100%"} src={this.props.image?this.props.image:"https://www.carlogos.org/logo/Chevrolet-logo-2013-2560x1440.png"}></CustomFastImage>
 				</View>

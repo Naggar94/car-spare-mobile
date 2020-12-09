@@ -1,11 +1,13 @@
 import axios from 'axios';
 import baseurl from "./BaseUrl"
+import AsyncStorage from '@react-native-community/async-storage';
 
 class Brand {
 	fetch = () => {
 		var promise = new Promise(  async (resolve, reject) => {
 			try{
-				let response = await axios.post(baseurl+"getCarBrandNames/ar");
+				let locale = await AsyncStorage.getItem('locale');
+				let response = await axios.post(baseurl+"getCarBrandNames/"+locale);
 				resolve(response);
 			}catch(e){
 				reject();

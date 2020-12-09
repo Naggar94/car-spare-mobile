@@ -60,8 +60,15 @@ export default class Profile extends React.Component {
 					id:"4",
 					title:i18n.t('Profile.item.logout'),
 					action: (() => {
-						auth().signOut().then(() => {
-							this.props.navigation.navigate('Auth');
+						auth().signOut().then(async () => {
+							try{
+								await AsyncStorage.removeItem('loggedUser');
+								this.props.navigation.navigate('Auth');
+							}catch(error){
+								console.log("error:");
+								console.log(error);
+								this.props.navigation.navigate('Auth');
+							}
 						});
 					})
 				}
