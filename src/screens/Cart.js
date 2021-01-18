@@ -30,7 +30,7 @@ class Cart extends React.Component {
 				}} onPress={() => {
 					navigation.getParam('handleBackButton')();
 				}}>
-					<Icon name="keyboard-arrow-right" size={25} color={"#FFFFFF"} />
+					<Icon name={i18n.locale == "ar" ? "keyboard-arrow-right" : "keyboard-arrow-left"} size={25} color={"#FFFFFF"} />
 				</TouchableOpacity>
 				:
 				null
