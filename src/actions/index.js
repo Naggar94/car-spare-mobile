@@ -101,12 +101,21 @@ const cartActions = {
 }
 
 const addressActions = {
-	SetAddress: (addressId,addressName) => {
+	SetAddress: (addressId,addressName,addressNote) => {
 		return({
 			type:"SetAddress",
 			payload:{
 				addressId:addressId,
-				addressName:addressName
+				addressName:addressName,
+				addressNote:addressNote
+			},
+		})
+	},
+	SetNote: (addressNote) => {
+		return({
+			type:"SetNote",
+			payload:{
+				addressNote:addressNote
 			},
 		})
 	},

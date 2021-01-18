@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:992786975345:android:28f19e693940f49bdd29d0",
+        "mobilesdk_app_id": "1:992786975345:android:6bde13e6b87c98dbdd29d0",
         "android_client_info": {
-          "package_name": "com.awesomeproject"
+          "package_name": "com.carspare"
         }
       },
       "oauth_client": [
         {
-          "client_id": "992786975345-52gmmies8soq36bsjiilg1o58md43fsm.apps.googleusercontent.com",
+          "client_id": "992786975345-v4dkjqk67uvrootss3dn22c9ciut1nt3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.awesomeproject",
+            "package_name": "com.carspare",
             "certificate_hash": "89b009488880bd67230d85e6d7ffbd1ef08a15e9"
           }
         },
@@ -38,6 +38,13 @@
             {
               "client_id": "992786975345-ea109gj9jrvndqhhibnr20q3mr3hd8fp.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "992786975345-61ffhnkcr9he5344npsn0cf5l997r7t4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.carspare.app"
+              }
             }
           ]
         }

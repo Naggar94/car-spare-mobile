@@ -17,6 +17,7 @@ class Address extends React.Component {
 		this.tintRemovalCallCounter = 0;
 		this.listeners = [];
 		this.state = {
+			note:"",
 			hasLoadedData:false,
 			selectedAddress:null,
 			addresses:["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19"],
@@ -136,6 +137,9 @@ class Address extends React.Component {
 								style={{
 									width:"100%",
 								}}
+								onChangeText={(note) => {
+									this.setState({note})
+								}}
 								textAlign={I18nManager.isRTL?'right':'left'}
 								placeholder={i18n.t('cart.deliveryNotesPlaceholder')}/>
 
@@ -157,6 +161,7 @@ class Address extends React.Component {
 							}} onPress={() => {
 								if(this.props.addressId != ""){
 									//Navigate To Payment
+									this.props.SetNote(this.state.note);
 									this.props.paymentPage();
 								}
 							}}><Text style={{

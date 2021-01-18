@@ -275,7 +275,7 @@ class Login extends React.Component {
 	        			height:"100%",
 		    		}}>
 
-		    			<TouchableOpacity 
+		    			<View 
 							style={{
 								width:"90%",
 								flexDirection: 'row',
@@ -286,7 +286,8 @@ class Login extends React.Component {
 								paddingLeft:25,
 								paddingRight:25,
 								backgroundColor:"#3b5999",
-								borderRadius:15
+								borderRadius:15,
+								opacity:0.5
 						}}>
 
 		    				<View style={{
@@ -307,9 +308,9 @@ class Login extends React.Component {
 			    				}}>{i18n.t('Login.facebookLogin')}</Text>
 		    				</View>
 
-		    			</TouchableOpacity>
+		    			</View>
 
-		    			<TouchableOpacity style={{
+		    			<View style={{
 		    				width:"90%",
 		    				flexDirection: 'row',
 		    				marginBottom:15,
@@ -320,7 +321,8 @@ class Login extends React.Component {
 		        			paddingRight:25,
 		        			borderColor:"#707070",
 		        			borderWidth:1,
-		        			borderRadius:15
+		        			borderRadius:15,
+		        			opacity:0.5
 		    			}}>
 
 		    				<View style={{
@@ -341,9 +343,9 @@ class Login extends React.Component {
 			    				}}>{i18n.t('Login.googleLogin')}</Text>
 			    			</View>
 
-		    			</TouchableOpacity>
+		    			</View>
 
-						<TouchableOpacity style={{
+						<View style={{
 							width:"90%",
 							flexDirection: 'row',
 							height:50,
@@ -355,6 +357,7 @@ class Login extends React.Component {
 							borderWidth:1,
 							borderRadius:15,
 							marginBottom:15,
+							opacity:0.5
 						}}>
 
 							<View style={{
@@ -375,7 +378,7 @@ class Login extends React.Component {
 								}}>{i18n.t('Login.appleLogin')}</Text>
 							</View>
 
-						</TouchableOpacity>
+						</View>
 
 						<View style={{
 							width:"90%",

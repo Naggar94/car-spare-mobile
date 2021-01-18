@@ -61,6 +61,7 @@ class Payment extends React.Component {
 			let order = {};
 			order.parts = parts;
 			order.address = this.props.addressId;
+			order.notes = this.props.addressNote;
 
 			let response = await OrderProvider.submit(order);
 			if(response.status){
@@ -119,24 +120,28 @@ class Payment extends React.Component {
 						
 
 					</TouchableOpacity>
+					{
+						false?
+						<View style={{
+							width:"100%",
+							padding:10,
+							height:75,
+							borderBottomWidth:1,
+							borderColor: "rgba(0,0,0,0.2);",
+							justifyContent:"center",
+							alignItems:"flex-start",
+						}}>
+							<TextInput 
+								style={{
+									width:"100%",
+								}}
+								textAlign={I18nManager.isRTL?'right':'left'}
+								placeholder={i18n.t('cart.Payment.voucher')}/>
 
-					<View style={{
-						width:"100%",
-						padding:10,
-						height:75,
-						borderBottomWidth:1,
-						borderColor: "rgba(0,0,0,0.2);",
-						justifyContent:"center",
-						alignItems:"flex-start",
-					}}>
-						<TextInput 
-							style={{
-								width:"100%",
-							}}
-							textAlign={I18nManager.isRTL?'right':'left'}
-							placeholder={i18n.t('cart.Payment.voucher')}/>
-
-					</View>
+						</View>
+						:
+						null
+					}
 				</View>
 				<View style={{
 					flex:4,
@@ -311,6 +316,7 @@ class Payment extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		addressId: state.address.addressId,
+		addressNote: state.address.addressNote,
 		cart: state.cart.list,
 	}
 }

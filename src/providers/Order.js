@@ -16,6 +16,8 @@ class Order {
 						},
 						body: JSON.stringify(order) 
 					}).then((response) => response.json()).then((data) => {
+						console.log(JSON.stringify(order));
+						console.log(data);
 						resolve(data);
 					}).catch((error) => {
 						console.log(error);

@@ -12,6 +12,11 @@ const AddressReducer = (state = initialState, action) => {
 				addressId:action.payload.addressId,
 				addressName:action.payload.addressName,
 			};
+		case 'SetNote':
+			return {
+				...state,
+				addressNote:action.payload.addressNote,
+			};
 		case 'ResetAddress':
 			return initialState;
 		default:
