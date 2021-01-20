@@ -274,111 +274,119 @@ class Login extends React.Component {
 	        			width:"100%",
 	        			height:"100%",
 		    		}}>
+		    			{
+		    				false?
+			    			(
+			    				<View>
+					    			<View 
+										style={{
+											width:"90%",
+											flexDirection: 'row',
+											marginBottom:15,
+											height:50,
+											justifyContent: 'flex-start',
+											alignItems:"center",
+											paddingLeft:25,
+											paddingRight:25,
+											backgroundColor:"#3b5999",
+											borderRadius:15,
+											opacity:0.5
+									}}>
 
-		    			<View 
-							style={{
-								width:"90%",
-								flexDirection: 'row',
-								marginBottom:15,
-								height:50,
-								justifyContent: 'flex-start',
-								alignItems:"center",
-								paddingLeft:25,
-								paddingRight:25,
-								backgroundColor:"#3b5999",
-								borderRadius:15,
-								opacity:0.5
-						}}>
+					    				<View style={{
+					    					flex:1,
+					    					alignItems:"flex-start"
+					    				}}>
+					    					<FontisoIcon name="facebook" size={19} color="#FFFFFF" />
+					    				</View>
 
-		    				<View style={{
-		    					flex:1,
-		    					alignItems:"flex-start"
-		    				}}>
-		    					<FontisoIcon name="facebook" size={19} color="#FFFFFF" />
-		    				</View>
+					    				<View style={{
+					    					flex:8,
+					    					alignItems:"flex-start"
+					    				}}>
+						    				<Text style={{
+						    					fontSize:20,
+							    				fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
+							    				color:"#FFFFFF",
+						    				}}>{i18n.t('Login.facebookLogin')}</Text>
+					    				</View>
 
-		    				<View style={{
-		    					flex:8,
-		    					alignItems:"flex-start"
-		    				}}>
-			    				<Text style={{
-			    					fontSize:20,
-				    				fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
-				    				color:"#FFFFFF",
-			    				}}>{i18n.t('Login.facebookLogin')}</Text>
-		    				</View>
+					    			</View>
 
-		    			</View>
+					    			<View style={{
+					    				width:"90%",
+					    				flexDirection: 'row',
+					    				marginBottom:15,
+					    				height:50,
+					        			justifyContent: 'flex-start',
+					        			alignItems:"center",
+					        			paddingLeft:25,
+					        			paddingRight:25,
+					        			borderColor:"#707070",
+					        			borderWidth:1,
+					        			borderRadius:15,
+					        			opacity:0.5
+					    			}}>
 
-		    			<View style={{
-		    				width:"90%",
-		    				flexDirection: 'row',
-		    				marginBottom:15,
-		    				height:50,
-		        			justifyContent: 'flex-start',
-		        			alignItems:"center",
-		        			paddingLeft:25,
-		        			paddingRight:25,
-		        			borderColor:"#707070",
-		        			borderWidth:1,
-		        			borderRadius:15,
-		        			opacity:0.5
-		    			}}>
+					    				<View style={{
+					    					flex:1,
+					    					alignItems:"flex-start"
+					    				}}>
+					    					<FontisoIcon name="google" size={19} color="#000000" />
+					    				</View>
 
-		    				<View style={{
-		    					flex:1,
-		    					alignItems:"flex-start"
-		    				}}>
-		    					<FontisoIcon name="google" size={19} color="#000000" />
-		    				</View>
+					    				<View style={{
+					    					flex:8,
+					    					alignItems:"flex-start"
+					    				}}>
+						    				<Text style={{
+						    					fontSize:20,
+							    				fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
+							    				color:"#707070",
+						    				}}>{i18n.t('Login.googleLogin')}</Text>
+						    			</View>
 
-		    				<View style={{
-		    					flex:8,
-		    					alignItems:"flex-start"
-		    				}}>
-			    				<Text style={{
-			    					fontSize:20,
-				    				fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
-				    				color:"#707070",
-			    				}}>{i18n.t('Login.googleLogin')}</Text>
-			    			</View>
+					    			</View>
 
-		    			</View>
+									<View style={{
+										width:"90%",
+										flexDirection: 'row',
+										height:50,
+										justifyContent: 'flex-start',
+										alignItems:"center",
+										paddingLeft:25,
+										paddingRight:25,
+										borderColor:"#707070",
+										borderWidth:1,
+										borderRadius:15,
+										marginBottom:15,
+										opacity:0.5
+									}}>
 
-						<View style={{
-							width:"90%",
-							flexDirection: 'row',
-							height:50,
-							justifyContent: 'flex-start',
-							alignItems:"center",
-							paddingLeft:25,
-							paddingRight:25,
-							borderColor:"#707070",
-							borderWidth:1,
-							borderRadius:15,
-							marginBottom:15,
-							opacity:0.5
-						}}>
+										<View style={{
+											flex:1,
+											alignItems:"flex-start"
+										}}>
+											<FontisoIcon name="apple" size={19} color="#000000" />
+										</View>
 
-							<View style={{
-								flex:1,
-								alignItems:"flex-start"
-							}}>
-								<FontisoIcon name="apple" size={19} color="#000000" />
-							</View>
+										<View style={{
+											flex:8,
+											alignItems:"flex-start"
+										}}>
+											<Text style={{
+												fontSize:20,
+												fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
+												color:"#707070",
+											}}>{i18n.t('Login.appleLogin')}</Text>
+										</View>
 
-							<View style={{
-								flex:8,
-								alignItems:"flex-start"
-							}}>
-								<Text style={{
-									fontSize:20,
-									fontFamily:Platform.OS === 'ios'?"Roboto-Regular":"Robotoregular",
-									color:"#707070",
-								}}>{i18n.t('Login.appleLogin')}</Text>
-							</View>
-
-						</View>
+									</View>
+								</View>
+							)
+							:
+							null
+						}
 
 						<View style={{
 							width:"90%",

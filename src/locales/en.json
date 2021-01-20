@@ -73,6 +73,7 @@
   	"alert":"Sorry, Currently there is no items",
   },
   "Login":{
+    "socialComingSoon":"Social login coming soon",
   	"title":"Sign In",
   	"introTitle":"Welcome to car spare",
   	"introDesc":"Where you can buy all car parts and accessories",
