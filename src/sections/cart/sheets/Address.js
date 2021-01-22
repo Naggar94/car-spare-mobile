@@ -70,9 +70,9 @@ export default class Address extends React.Component {
 		}
 
 		let address = {
-			streetAddress:this.state.address.streetAddress,
+			address:this.state.address.streetAddress,
 			buildingInfo:this.state.address.buildingInfo,
-			mobileNumber:this.state.address.mobileNumber,
+			phoneNumber:this.state.address.mobileNumber,
 			addressName:this.state.address.addressName,
 		}
 

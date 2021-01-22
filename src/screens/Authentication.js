@@ -23,7 +23,7 @@ export default class Authentication extends React.Component {
 				if(userObj.loggedIn){
 					let loginResponse = await SignInProvider.byMail(userObj.email,userObj.password);
 					if(!loginResponse.success){
-						let signUpResponse = await SignUpProvider.fetch(userObj.phoneNumber,userObj.email,"mail",userObj.uid,userObj.password);
+						let signUpResponse = await SignUpProvider.fetch(userObj.firstName,userObj.familyName,userObj.phoneNumber,userObj.email,"mail",userObj.uid,userObj.password);
 						if(signUpResponse.success){
 							userObj.token = signUpResponse.payload.token;
 							await AsyncStorage.setItem('loggedUser',JSON.stringify(userObj));

@@ -80,6 +80,8 @@
   	"facebookLogin":"Continue using Facebook",
   	"googleLogin":"Continue using Google",
   	"appleLogin":"Continue using Apple",
+    "firstName":"First Name",
+    "familyName":"Family Name",
     "email":"Email",
     "password":"Password",
     "confirmPassword":"Confirm password",
@@ -91,6 +93,9 @@
     "emailSignInTitle":"Enter your email and password",
     "emailSignInErrorMessages":{
       "emailInvalid":"Email is invalid",
+      "nameInvalidWhiteSpace":"Name field cannot include white spaces",
+      "firstNameMissing":"First name cannot be empty",
+      "familyNameMissing":"Family name cannot be empty",
       "emailMissing":"Email cannot be empty",
       "passwordInvalid":"Password must be at least 6 characters",
       "passwordMismatch":"Password is not identical",

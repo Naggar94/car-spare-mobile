@@ -79,6 +79,8 @@ class Login extends React.Component {
 			navigateTo:"",
 			loading:true,
 			errorMessage:"",
+			firstName:"",
+			familyName:"",
 			email:"",
 			password:"",
 			confirmPassword:"",
@@ -118,7 +120,25 @@ class Login extends React.Component {
 			//Navigate To Phone Auth
 			if(user.phoneNumber == null){
 				try{
+					var fullName = "Unknown User";
+					if(user.displayName != null && user.displayName != ""){
+						fullName = user.displayName;
+						let displayNameSplited = user.displayName.split(" ");
+						this.setState({
+							firstName:displayNameSplited[0],
+							familyName:displayNameSplited[1]
+						})
+					}else if(this.state.firstName != "" && this.state.familyName != ""){
+						fullName = this.state.firstName + " " + this.state.familyName;
+					}
+					await auth().currentUser.updateProfile({
+						displayName: fullName,
+					});
+					console.log(fullName);
+					console.log(auth().currentUser);
 					let loggedUser = {
+						firstName:this.state.firstName != "" ? this.state.firstName:"Unknown",
+						familyName:this.state.familyName != "" ? this.state.familyName:"User",
 						emailVerified:user.emailVerified,
 						loggedIn:false,
 						phoneNumber: user.phoneNumber,
@@ -136,8 +156,14 @@ class Login extends React.Component {
 				}
 			}else{
 				console.log(user);
-
+				var displayName = "Unknown User";
+				if(user.displayName != null && user.displayName != ""){
+					displayName = user.displayName;
+				}
+				var displayNameSplited = displayName.split(" ");
 				let loggedUser = {
+					firstName:displayNameSplited[0],
+					familyName:displayNameSplited[1],
 					emailVerified:user.emailVerified,
 					loggedIn:true,
 					phoneNumber: user.phoneNumber,
@@ -585,7 +611,7 @@ class Login extends React.Component {
 
 					<View style={{
 							flexDirection:'column',
-							height:350,
+							height:480,
 							width:"100%",
 							borderWidth:2,
 							borderColor:'rgba(0,0,0,0.1)',
@@ -603,6 +629,44 @@ class Login extends React.Component {
 								borderWidth:1,
 								height:50,
 								paddingHorizontal:10,
+								textAlign:i18n.locale == "ar" ? "right" : "left"
+							}}
+							placeholder={i18n.t('Login.firstName')}
+							placeholderTextColor="#C7C7CD"
+							autoCompleteType={"name"}
+							textContentType={"givenName"}
+							keyboardType={"default"}
+							onChangeText={text => {
+								this.setState({firstName:text})
+							}}></TextInput>
+
+							<TextInput style={{
+								width:"90%",
+								backgroundColor:"#f5f6f8",
+								borderColor:'rgba(0,0,0,0.1)',
+								borderWidth:1,
+								height:50,
+								paddingHorizontal:10,
+								marginTop:15,
+								textAlign:i18n.locale == "ar" ? "right" : "left"
+							}}
+							placeholder={i18n.t('Login.familyName')}
+							placeholderTextColor="#C7C7CD"
+							autoCompleteType={"name"}
+							textContentType={"familyName"}
+							keyboardType={"default"}
+							onChangeText={text => {
+								this.setState({familyName:text})
+							}}></TextInput>
+
+							<TextInput style={{
+								width:"90%",
+								backgroundColor:"#f5f6f8",
+								borderColor:'rgba(0,0,0,0.1)',
+								borderWidth:1,
+								height:50,
+								paddingHorizontal:10,
+								marginTop:15,
 								textAlign:i18n.locale == "ar" ? "right" : "left"
 							}}
 							placeholder={i18n.t('Login.email')}
@@ -668,6 +732,22 @@ class Login extends React.Component {
 				    			backgroundColor:"#034d7e",
 				    			borderRadius:8
 							}} onPress={() => {
+								if(this.state.firstName == ""){
+									this.setState({errorMessage:i18n.t('Login.emailSignInErrorMessages.firstNameMissing'),showErrorDialog:true});
+									return;
+								}
+								if(this.state.firstName.includes(" ")){
+									this.setState({errorMessage:i18n.t('Login.emailSignInErrorMessages.nameInvalidWhiteSpace'),showErrorDialog:true});
+									return;
+								}
+								if(this.state.familyName == ""){
+									this.setState({errorMessage:i18n.t('Login.emailSignInErrorMessages.familyNameMissing'),showErrorDialog:true});
+									return;
+								}
+								if(this.state.familyName.includes(" ")){
+									this.setState({errorMessage:i18n.t('Login.emailSignInErrorMessages.nameInvalidWhiteSpace'),showErrorDialog:true});
+									return;
+								}
 								if(this.state.email == ""){
 									this.setState({errorMessage:i18n.t('Login.emailSignInErrorMessages.emailMissing'),showErrorDialog:true});
 									return;

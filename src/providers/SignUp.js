@@ -1,7 +1,7 @@
 import baseurl from "./BaseUrl"
 
 class SignUp {
-	fetch = (phoneNumber,mail,method,firebaseID,password) => {
+	fetch = (firstName,lastName,phoneNumber,mail,method,firebaseID,password) => {
 		var promise = new Promise(  async (resolve, reject) => {
 			try{
 				fetch(baseurl+"signUp", {
@@ -10,8 +10,8 @@ class SignUp {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify({
-						"firstname":"Annonymus",
-						"lastname":"User",
+						"firstname":firstName,
+						"lastname":lastName,
 						"phoneNumber":phoneNumber,
 						"mail":mail,
 						"method":method,

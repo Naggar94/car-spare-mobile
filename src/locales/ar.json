@@ -80,6 +80,8 @@
   	"facebookLogin":"الاستمرار بواسطة حساب فيسبوك",
   	"googleLogin":"الاستمرار بواسطة حساب جوجل",
   	"appleLogin":"الاستمرار بواسطة حساب ابل",
+    "firstName":"الأسم الأول",
+    "familyName":"اسم العائله",
     "email":"البريد الإلكتروني",
     "password":"كلمة المرور",
     "confirmPassword":"تأكيد كلمة المرور",
@@ -91,6 +93,9 @@
     "emailSignInTitle":"أدخل البريد الإلكتروني و كلمة المرور",
     "emailSignInErrorMessages":{
       "emailInvalid":"البريد الإلكتروني غير سليم",
+      "nameInvalidWhiteSpace":"حقل الاسم لا يمكنه ان يتضمن مسافات بيضاء",
+      "firstNameMissing":"الأسم الأةل لا يمكن ان يكون فارغ",
+      "familyNameMissing":"أسم العائلة لا يمكن ان يكون فارغ",
       "emailMissing":"البريد الإلكتروني لا يمكن ان يكون فارغ",
       "passwordInvalid":"كلمة المرور يجب ان تتكون من سته حروف او ارقام علي الأقل",
       "passwordMismatch":"كلمه المرور غير متطابقة",
