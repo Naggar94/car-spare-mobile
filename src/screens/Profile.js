@@ -22,18 +22,25 @@ export default class Profile extends React.Component {
 					id:"1",
 					title:i18n.t('Profile.item.basicInformation'),
 					action: (() => {
-
+						this.props.navigation.navigate('BasicInformation');
 					})
 				},
 				{
 					id:"2",
+					title:i18n.t('Profile.item.changeEmailAddress'),
+					action: (() => {
+						this.props.navigation.navigate('ChangeEmailAddress');
+					})
+				},
+				{
+					id:"3",
 					title:i18n.t('Profile.item.wishList'),
 					action: (() => {
 						this.props.navigation.navigate('Favorites');
 					})
 				},
 				{
-					id:"3",
+					id:"4",
 					title:i18n.t('Profile.item.changeLanguage'),
 					action: (() => {
 						try {
@@ -57,7 +64,7 @@ export default class Profile extends React.Component {
 					})
 				},
 				{
-					id:"4",
+					id:"5",
 					title:i18n.t('Profile.item.logout'),
 					action: (() => {
 						auth().signOut().then(async () => {

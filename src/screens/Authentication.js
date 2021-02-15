@@ -27,14 +27,24 @@ export default class Authentication extends React.Component {
 						if(signUpResponse.success){
 							userObj.token = signUpResponse.payload.token;
 							await AsyncStorage.setItem('loggedUser',JSON.stringify(userObj));
-							this.props.navigation.navigate('App');
+							let user = auth().currentUser;
+							if(user && !user.emailVerified){
+								this.props.navigation.navigate('VerifyEmailAddress');
+							}else{
+								this.props.navigation.navigate('App');
+							}
 						}else{
 							throw new Error('Sign up Failed');
 						}
 					}else{
 						userObj.token = loginResponse.payload.token;
 						await AsyncStorage.setItem('loggedUser',JSON.stringify(userObj));
-						this.props.navigation.navigate('App');
+						let user = auth().currentUser;
+						if(user && !user.emailVerified){
+							this.props.navigation.navigate('VerifyEmailAddress');
+						}else{
+							this.props.navigation.navigate('App');
+						}
 					}
 				}
 			}else{

@@ -20,7 +20,10 @@ import PhoneLoginScreen from '../screens/PhoneLogin';
 import RegisterScreen from '../screens/Register';
 import HomeScreen from '../screens/Home';
 import ProfileScreen from '../screens/Profile';
+import BasicInformationScreen from '../screens/BasicInformation';
+import ChangeEmailAddressScreen from '../screens/ChangeEmailAddress';
 import SplashScreen from '../screens/Splash';
+import VerifyEmailAddressScreen from '../screens/VerifyEmailAddress';
 import AuthenticatingScreen from '../screens/Authentication';
 import ModelGridListScreen from '../screens/ModelGridList';
 import SubModelListScreen from '../screens/SubModelList';
@@ -92,6 +95,8 @@ CartStack.navigationOptions = ({ navigation }) => ({
 
 const ProfileStack = createStackNavigator({  
 	Profile:ProfileScreen,
+	BasicInformation:BasicInformationScreen,
+	ChangeEmailAddress:ChangeEmailAddressScreen,
 	Favorites:FavoritesScreen
 },
 {
@@ -156,6 +161,7 @@ const AuthNavigator = createBottomTabNavigator({
 const SwitchNavigator = createSwitchNavigator(
 	{
 	  Splash: SplashScreen,
+	  VerifyEmailAddress:VerifyEmailAddressScreen,
 	  Authenticating: AuthenticatingScreen,
 	  App: MainNavigator,
 	  Auth: AuthNavigator,

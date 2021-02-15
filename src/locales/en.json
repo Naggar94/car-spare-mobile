@@ -112,12 +112,33 @@
     "checkNumber":"Check Number",
   },
   "General":{
-    "loading":"Loading"
+    "loading":"Loading",
+    "Validation":{
+      "fieldRequired": "This field is required",
+      "invalidEmail": "This email is invalid"
+    }
   },
   "Profile":{
+    "BasicInformation":{
+      "title":"Basic Information",
+      "firstname": "First Name",
+      "lastname": "Last Name",
+      "phone": "Phone",
+      "email": "Email",
+      "editInformation": "Edit Information"
+    },
+    "ChangeEmailAddress":{
+      "title":"Change Email Address",
+      "email":"New Email Address",
+      "password":"Your account password",
+      "editEmailAddress":"Edit Email Address",
+      "errorSameEmail":"Cannot submit same email again, please change the email address to proceed",
+      "errorChangingMail":"Cannot change email address, please try again"
+    },
     "item":{
       "changeLanguage":"Change Language",
       "basicInformation":"Basic Information",
+      "changeEmailAddress":"Change Email Address",
       "wishList":"Wish List",
       "logout":"Log Out",
     },
@@ -128,5 +149,12 @@
     "authenticationFailedConfirmation":"OK",
     "authenticationFailedTitle":"Error",
     "authenticationFailedMSG":"Error occured during authentication, please try again.",
+  },
+  "VerifyEmailAddress":{
+    "note":"A verification email has been sent to your account",
+    "confirmation": "Mail sent sucessfully",
+    "error":"Failed to send mail, please try again",
+    "resend":"Resend",
+    "relogin":"Login Again",
   }
 }

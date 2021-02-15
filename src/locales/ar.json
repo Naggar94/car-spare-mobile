@@ -112,12 +112,33 @@
     "checkNumber":"التحقق من الرقم",
   },
   "General":{
-    "loading":"تحميل"
+    "loading":"تحميل",
+    "Validation":{
+      "fieldRequired": "هذا الحقل مطلوب",
+      "invalidEmail": "البريد الإلكتروني غير سليم"
+    }
   },
   "Profile":{
+    "BasicInformation":{
+      "title":"البيانات الرئيسية",
+      "firstname": "الاسم الأول",
+      "lastname": "الاسم الأخير",
+      "phone": "رقم الهاتف",
+      "email": "البريد الإلكتروني",
+      "editInformation": "تعديل البيانات"
+    },
+    "ChangeEmailAddress":{
+      "title":"تغيير البريد الإلكتروني",
+      "email":"البريد الإلكتروني الجديد",
+      "password": "كلمة مرور حسابك",
+      "editEmailAddress":"تعديل البريد الإلكتروني",
+      "errorSameEmail":"عفوا لا يمكنك إدخال نفس البريد مجددا",
+      "errorChangingMail":"حدث خطأ في تعدي البريد الإلكتروني"
+    },
     "item":{
       "changeLanguage":"تغيير اللغة",
       "basicInformation":"البيانات الرئيسية",
+      "changeEmailAddress":"تغيير البريد الإلكتروني",
       "wishList":"قائمة المفضلات",
       "logout":"تسجيل الخروج",
     },
@@ -128,5 +149,12 @@
     "authenticationFailedConfirmation":"تم",
     "authenticationFailedTitle":"خطأ",
     "authenticationFailedMSG":"لقد حدث خطأ خلال تسجيل الدخول، برجاء المحاوله مجددا",
+  },
+  "VerifyEmailAddress":{
+    "note":"لقد تم إرسال بريد الكتروني لتأكيد ملكيتك علي العنوان",
+    "confirmation": "لقد تم أرسال الرساله الي بريدك بنجاح",
+    "error":"حدث خطأ في إرسال الرساله الي بريدك، برجاء المحاوله مره أخري",
+    "resend":"إعادة إرسال",
+    "relogin":"إعادة تسجيل الدخول",
   }
 }

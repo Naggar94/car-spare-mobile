@@ -22,9 +22,20 @@ class Splash extends React.Component {
 	}
 
 	onAuthStateChanged = async (user) => {
+		console.log("Splash");
+		console.log(user);
 		let navigationTo = 'Auth';
 		if (user && user.phoneNumber != null) {
-            navigationTo = 'App';
+			if(user && !user.emailVerified){
+	        	navigationTo = 'VerifyEmailAddress';
+	        }else{
+	        	try{
+	        		await AsyncStorage.removeItem('verificationMailSent');
+	        	}catch(error){
+
+	        	}
+	        	navigationTo = 'App';
+	        }
         }
 
         try {
@@ -44,7 +55,7 @@ class Splash extends React.Component {
 					I18nManager.allowRTL(false);
 					I18nManager.forceRTL(false);
 				}
-
+				console.log(navigationTo);
 				this.props.navigation.navigate(navigationTo);
 			}else{
 				i18n.locale = 'ar';
